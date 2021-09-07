@@ -1,0 +1,53 @@
+#ingredients {
+  background-color: #3282f7;
+}
+#ingredients::-moz-placeholder {
+  color: white;
+}
+#ingredients:-ms-input-placeholder {
+  color: white;
+}
+#ingredients::placeholder {
+  color: white;
+}
+
+#ingredientsBtn {
+  background-color: #3282f7;
+  color: white;
+}
+
+#appliances {
+  background-color: #68d9a4;
+}
+#appliances::-moz-placeholder {
+  color: white;
+}
+#appliances:-ms-input-placeholder {
+  color: white;
+}
+#appliances::placeholder {
+  color: white;
+}
+
+#appliancesBtn {
+  background-color: #68d9a4;
+  color: white;
+}
+
+#ustensils {
+  background-color: #ed6454;
+}
+#ustensils::-moz-placeholder {
+  color: white;
+}
+#ustensils:-ms-input-placeholder {
+  color: white;
+}
+#ustensils::placeholder {
+  color: white;
+}
+
+#ustensilsBtn {
+  background-color: #ed6454;
+  color: white;
+}/*# sourceMappingURL=custom.css.map */
