@@ -1,3 +1,12 @@
+// reset on refresh
+let inputs = document.querySelectorAll('input');
+
+window.onload = function(){
+    for(input of inputs){
+        input.value = '';
+    }
+}
+
 // get recipes
 const recipesList = recipes;
 
@@ -80,16 +89,16 @@ function toLowerNormalize(result){
 
 function checkPlurials(word, list){
     
-    // let wordLength = word.length;
-    // if(word.charAt(wordLength) == 's'){
-    //     let wordSingular = word.slice(0, wordLength -1);
-    //     if(list.includes(wordSingular)){
-    //         return word = wordSingular;
-    //     }
-    // }
+    let wordLength = word.length;
+    if(word.charAt(wordLength) == 's'){
+        let wordSingular = word.slice(0, wordLength -1);
+        if(list.includes(wordSingular)){
+            return word = wordSingular;
+        }
+    }
 
-    // console.log(word);
-    // return word;
+    console.log(word);
+    return word;
 }
 
 console.log(ingredientsList);
@@ -99,7 +108,6 @@ console.log(ustensilsList);
 // search engine
 
 // check inpput on click
-let inputs = document.querySelectorAll('input');
 for(input of inputs){
     input.addEventListener('click', (e)=> {
         
@@ -204,21 +212,81 @@ function getMatchingRecipes(recipesResultArray){
 //     });
 // }
 
-// add choices in each input menu
+// add choices to inputs
 
-// add cards
+function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
+    
+    // ingredients
+    let ingredientDataList= document.querySelector('#ingredientsData');
+    for(element of ingredientsArray){
+        // add ingredient List in datalist
+        const ingredientOption = `<option value="${element}">`;
+        ingredientDataList.insertAdjacentHTML('afterbegin', ingredientOption)
+    }
+    //appliances
+    console.log(appliancesArray);
+    let appliancesDataList = document.querySelector('#appliancesData');
+    for(element of appliancesArray){
+        // add appliances List in datalist
+        const appliancesOption = `<option value="${element}">`;
+        appliancesDataList.insertAdjacentHTML('afterbegin', appliancesOption)
+    }
 
-function addCards(){
+    // ustensils
+    console.log(ustensilsArray);
+    let ustensilsDataList = document.querySelector('#ustensilsData');
+    for(element of ustensilsArray){
+        // add ustensils List in datalist
+        const ustensilsOption = `<option value="${element}">`;
+        ustensilsDataList.insertAdjacentHTML('afterbegin', ustensilsOption)
+    }
+
+}
+
+
+
+
+// add cards to page
+let indexes = [1, 2, 3, 4, 5, 6];
+let mainTag = document.querySelector("main");
+let x = 0;
+for(index of indexes){
+    if(x%3 == 0 && x!==0){
+        const deckSup = `
+        <div class="card-deck">
+        </div>
+        `;
+        
+        mainTag.insertAdjacentHTML('beforeend', deckSup);
+        addCards(index);
+        x=0;
+    }
+    else{
+        addCards(index);
+    }
+    x++;
+}
+
+function addCards(index){
+    let cardsDecks = document.querySelectorAll(".card-deck");
+    let cardsDeck = cardsDecks[cardsDecks.length - 1];
 
     const cardsPattern = `
     <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">${recipesList[index].name}</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h6 class="card-title">${recipesList[index].name}</h5>
+          <p id="time" class="card-text"><i class="far fa-clock"></i>${recipesList[index].time}</p>
+          ${recipesList[index].ingredients.map(ingIndex =>
+            `
+          <p id="ingredientText" class="card-text">
+          ${ingIndex.ingredient} ${ingIndex.quantity ? `: `+ ingIndex.quantity : ingIndex.quantite ? `: ` + ingIndex.quantite : ''} ${ingIndex.unit ? ingIndex.unit : ''}            </p>
+          `
+            ).join('')}
+          <p id="ingredientText" class="card-text"></p>
+          <p id="description" class="card-text">${recipesList[index].description}</p>
+        </div>
+    </div>
     `;
-    cardsPattern.insertAdjacentHTML('beforeend', cardsDeck);
+    cardsDeck.insertAdjacentHTML('beforeend', cardsPattern);
 }

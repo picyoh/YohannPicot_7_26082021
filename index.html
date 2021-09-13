@@ -42,53 +42,27 @@
             </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <ul class="list-unstyled" id="customerChoice">
-            
-          </ul>
-        </div>
+      <div id="custumor-choices" class="row">
       </div>
       <!-- filters -->
-      <div class="row ml-5">
-        <div class="input-group col">
-          <input id="ingredients" type="text" class="form-control border-0" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
-          <div class="input-group-append">
-            <button id="ingredientsBtn" class="btn btn-outline-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col">
+          <input id="ingredients" list="ingredientsData" class="custom-select custom-select-lg" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
+          <datalist id="ingredientsData">
+
+          </datalist>
         </div>
-        <div class="input-group col">
-          <input id="appliances" type="text" class="form-control border-0" placeholder="Appareils" aria-label="filtre des appareils avec menu déroulant">
-          <div class="input-group-append">
-            <button id="appliancesBtn" class="btn btn-outline-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
+        <div class="col">
+          <input id="appliances" list="appliancesData" class="custom-select custom-select-lg" placeholder="Appareils" aria-label="filtre des ingredients avec menu déroulant">
+          <datalist id="appliancesData">
+            
+          </datalist>
         </div>
-        <div class="input-group col">
-          <input id="ustensils" type="text" class="form-control border-0" aria-label="filtre des ustensiles avec menu déroulant" placeholder="Ustensiles">
-          <div class="input-group-append">
-            <button id="ustensilsBtn" class="btn btn-outline-secondary dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
+        <div class="col">
+          <input id="ustensils" list="ustensilsData" class="custom-select custom-select-lg" placeholder="Ustensiles" aria-label="filtre des ingredients avec menu déroulant">
+          <datalist id="ustensilsData">
+            
+          </datalist>
         </div>
       </div>
       <!-- cards -->
