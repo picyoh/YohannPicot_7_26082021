@@ -93,7 +93,7 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     // ingredients
     const ingredientDataList= document.querySelector('#ingredientsData');
     let optionsList= [];
-    let compareList=[]
+    let compareList=[];
 
     for (i=0; i< ingredientsArray.length; i++){
         const k= ingredientsArray[i];

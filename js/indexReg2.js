@@ -1,3 +1,34 @@
+// boucle avec Regex
+
+// function createString(array, target){
+    
+//     const flatArray = array.flat();
+//     const filteredArray = flatArray.filter(element => isNaN(element));
+//     const sepArray=[];
+//     for(element of filteredArray){
+//         const sepEl = element.replace(/\s/g, '+');
+//         sepArray.push(sepEl);
+//     }
+
+//     const stringArray = sepArray.join('|');
+//     compareInputValue(target, stringArray);
+// }
+
+// function compareInputValue(input, list){
+//     input.addEventListener('keyup', (e)=> {
+//         const inputReg = new RegExp(`${input.value}`,"gi");
+//         console.log(list);
+//         console.log(inputReg);
+//         // console.log(inputReg);
+//         const matchesResult;
+//         while((matchesResult = inputReg.exec(list)) !== null) {
+//             console.log(`${matchesResult[0]} , ${inputReg.lastIndex}`);
+//             // retrouver correspondance indexes
+//         }
+//     });
+// }
+
+
 // reset on refresh
 const inputs = document.querySelectorAll('input');
 

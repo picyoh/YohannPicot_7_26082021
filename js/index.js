@@ -25,11 +25,14 @@ for (let i = 0; i < recipesList.length; i++){
         // ingredient
         const actualIngredient = ingredientItem.ingredient;
         // normalize
-        const normalizedIngredient = toLowerNormalize(actualIngredient);
+        let normalizedIngredient = toLowerNormalize(actualIngredient);
+        // console.log(normalizedIngredient);
+        normalizedIngredient = checkPlurials(normalizedIngredient, ingredientsList);
+        // console.log(normalizedIngredient);
         // compare to existing array
         if (!ingredientsList.includes(normalizedIngredient)){
 
-            checkPlurials(normalizedIngredient, ingredientsList);
+            // normalizedIngredient = word;
             // push ingredient to array
             ingredientsList.push(normalizedIngredient);
             // push its index
@@ -44,10 +47,11 @@ for (let i = 0; i < recipesList.length; i++){
     // appliances
     const actualApplicance = recipesList[i].appliance;
     // normalize
-    const normalizedAppliance = toLowerNormalize(actualApplicance);
+    let normalizedAppliance = toLowerNormalize(actualApplicance);
+    normalizedAppliance = checkPlurials(normalizedAppliance, appliancesList);
     // compare to existing array
     if(!appliancesList.includes(normalizedAppliance)){
-        checkPlurials(normalizedAppliance, appliancesList);
+        // normalizedAppliance = word;
         // push to apliance to array
         appliancesList.push(normalizedAppliance);
         // push its index
@@ -65,10 +69,11 @@ for (let i = 0; i < recipesList.length; i++){
         // ustensil
         const actualUstensil = toLowerNormalize(ustensilItem);
         // normalize
-        const normalizedUstensil = toLowerNormalize(actualUstensil);
+        let normalizedUstensil = toLowerNormalize(actualUstensil);
+        normalizedUstensil = checkPlurials(normalizedUstensil, ustensilsList);
         // compare to existing array
         if (!ustensilsList.includes(normalizedUstensil)){
-            checkPlurials(normalizedUstensil, ustensilsList);
+            // normalizedUstensil = word;
             // push ustensils to array
             ustensilsList.push(normalizedUstensil);
             // push its index
@@ -90,16 +95,13 @@ function toLowerNormalize(result){
 function checkPlurials(word, list){
     
     const wordLength = word.length;
-    if(word.charAt(wordLength) == 's'){
-        const wordSingular = word.slice(0, wordLength -1);
-        console.log(wordSingular);
-        if(list.includes(wordSingular)){
-            return word = wordSingular;
-        }
+    const wordSingular = word.slice(0, wordLength -1);
+    
+    if(list.includes(wordSingular)){
+        return wordSingular;
+    } else {
+        return word;
     }
-
-    console.log(word);
-    return word;
 }
 
 // console.log(ingredientsList);
@@ -110,17 +112,21 @@ function checkPlurials(word, list){
 
 // check inpput on click
 for(input of inputs){
+
     input.addEventListener('click', (e)=> {
-        
         // get input name
         const target = e.target;
         const inputName = target.id;
         
         if(inputName == 'search'){
             // concat Lists
-            const concatList = ingredientsList.concat(appliancesList.concat(ustensilsList));
+            // const concatList = ingredientsList.concat(appliancesList.concat(ustensilsList));
+            
             // get input value & compare
-            compareChars(concatList, target);
+            compareChars(ingredientsList, target, 0);
+            compareChars(appliancesList, target, 1);
+            compareChars(ustensilsList, target, 2);
+            // compareChars(concatList, target);
             // append choices
         }else if('ingredients'|'appliances'|'ustensils'){
             // get list name
@@ -137,13 +143,22 @@ for(input of inputs){
 
 
 // boucle avec tableau
-function compareChars(list, input){
-    // create comparaison array
+function compareChars(list, input, listNumber){
+    // listen to keyboards
     input.addEventListener('keyup',(e)=> {
-        // listen to keyboards
+        
         const CharsIndexArray = [];
         
-        if(input.value !== ""){
+        if(input.value.length >= 3){
+
+            // clear previous datas
+            const ingredientsDataList= document.querySelector('#ingredientsData');
+            ingredientsDataList.innerHTML = '';
+            const appliancesDataList = document.querySelector('#appliancesData');
+            appliancesDataList.innerHTML = '';
+            const ustensilsDataList = document.querySelector('#ustensilsData');
+            ustensilsDataList.innerHTML = '';
+
             const charsNumber = input.value.length;
             
             for (i=0; i<list.length; i++){
@@ -157,15 +172,44 @@ function compareChars(list, input){
                     }
                 }
             }
-            getMatchingId(list, CharsIndexArray);
+
+            getMatchingId(list, CharsIndexArray, listNumber);
+
+        } else {
+            e.stopPropagation();
         }
     });
 }
 
-function getMatchingId(list, CharsIndexArray){
+function getMatchingId(list, CharsIndexArray, listNumber){
+    // create result index array for cards
     const recipesResultArray = [];
+
+    // create result for choices list
+    const ingredientsArray = [];
+    const appliancesArray = [];
+    const ustensilsArray = [];
     
     for(results of CharsIndexArray){
+        switch(listNumber){
+            case 0:
+                if(!ingredientsArray.includes(results)){
+                    ingredientsArray.push(list[results]);
+                }
+                break;
+            case 1:
+                if(!appliancesArray.includes(results)){
+                    appliancesArray.push(list[results]);
+                }
+                break;
+            case 2:
+                if(!ustensilsArray.includes(results)){
+                    ustensilsArray.push(list[results]);
+                }
+                break;
+            default:
+                console.log("err choice arrray");
+        }
         const recipesId = list[results +1];
         for(recipeId of recipesId){
             if(!recipesResultArray.includes(recipeId)){
@@ -174,66 +218,27 @@ function getMatchingId(list, CharsIndexArray){
         }
     }
     getMatchingRecipes(recipesResultArray);
-}
-
-function getMatchingRecipes(recipesResultArray){
-    let ingredientsArray = [];
-    let appliancesArray = [];
-    let ustensilsArray = [];
-    
-    for(result of recipesResultArray){
-        // console.log(recipesList[result]);
-        ingredientsArray = ingredientsArray.concat(recipesList[result].ingredients); 
-        appliancesArray = appliancesArray.concat(recipesList[result].appliance); 
-        ustensilsArray = ustensilsArray.concat(recipesList[result].ustensils);
-    }
-    // console.log({ingredientsArray, appliancesArray, ustensilsArray});
     addChoices(ingredientsArray, appliancesArray, ustensilsArray);
 }
 
-// boucle avec Regex
-
-// function createString(array, target){
-    
-//     const flatArray = array.flat();
-//     const filteredArray = flatArray.filter(element => isNaN(element));
-//     const sepArray=[];
-//     for(element of filteredArray){
-//         const sepEl = element.replace(/\s/g, '+');
-//         sepArray.push(sepEl);
-//     }
-
-//     const stringArray = sepArray.join('|');
-//     compareInputValue(target, stringArray);
-// }
-
-// function compareInputValue(input, list){
-//     input.addEventListener('keyup', (e)=> {
-//         const inputReg = new RegExp(`${input.value}`,"gi");
-//         console.log(list);
-//         console.log(inputReg);
-//         // console.log(inputReg);
-//         const matchesResult;
-//         while((matchesResult = inputReg.exec(list)) !== null) {
-//             console.log(`${matchesResult[0]} , ${inputReg.lastIndex}`);
-//             // retrouver correspondance indexes
-//         }
-//     });
-// }
+function getMatchingRecipes(recipesResultArray){
+    for(result of recipesResultArray){
+        console.log(recipesList[result]);
+    }
+}
 
 // add choices to inputs
 
 function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     
     // ingredients
-    const ingredientDataList= document.querySelector('#ingredientsData');
+    const ingredientsDataList= document.querySelector('#ingredientsData');
     for(element of ingredientsArray){
-
-        console.log(element.ingredient);
+        console.log(element);
 
         // add ingredient List in datalist
-        const ingredientOption = `<option value="${element.ingredient}">`;
-        ingredientDataList.insertAdjacentHTML('afterbegin', ingredientOption)
+        const ingredientOption = `<option value="${element}">`;
+        ingredientsDataList.insertAdjacentHTML('afterbegin', ingredientOption)
     }
     //appliances
     // console.log(appliancesArray);
@@ -254,9 +259,6 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     }
 
 }
-
-
-
 
 // add cards to page
 const indexes = [1, 2, 3, 4, 5, 6];
