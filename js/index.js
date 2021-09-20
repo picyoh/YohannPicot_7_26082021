@@ -1,5 +1,5 @@
 // reset on refresh
-let inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll('input');
 
 window.onload = function(){
     for(input of inputs){
@@ -19,13 +19,13 @@ const ustensilsList = [];
 
 for (let i = 0; i < recipesList.length; i++){
     // ingredients array
-    let recipeIngredients = recipesList[i].ingredients;
+    const recipeIngredients = recipesList[i].ingredients;
     
     for(ingredientItem of recipeIngredients){
         // ingredient
-        let actualIngredient = ingredientItem.ingredient;
+        const actualIngredient = ingredientItem.ingredient;
         // normalize
-        let normalizedIngredient = toLowerNormalize(actualIngredient);
+        const normalizedIngredient = toLowerNormalize(actualIngredient);
         // compare to existing array
         if (!ingredientsList.includes(normalizedIngredient)){
 
@@ -42,9 +42,9 @@ for (let i = 0; i < recipesList.length; i++){
     }
     
     // appliances
-    let actualApplicance = recipesList[i].appliance;
+    const actualApplicance = recipesList[i].appliance;
     // normalize
-    let normalizedAppliance = toLowerNormalize(actualApplicance);
+    const normalizedAppliance = toLowerNormalize(actualApplicance);
     // compare to existing array
     if(!appliancesList.includes(normalizedAppliance)){
         checkPlurials(normalizedAppliance, appliancesList);
@@ -59,13 +59,13 @@ for (let i = 0; i < recipesList.length; i++){
     }
 
     // ustensils array
-    let recipeUstensil = recipesList[i].ustensils;
+    const recipeUstensil = recipesList[i].ustensils;
 
     for(ustensilItem of recipeUstensil){
         // ustensil
-        let actualUstensil = toLowerNormalize(ustensilItem);
+        const actualUstensil = toLowerNormalize(ustensilItem);
         // normalize
-        let normalizedUstensil = toLowerNormalize(actualUstensil);
+        const normalizedUstensil = toLowerNormalize(actualUstensil);
         // compare to existing array
         if (!ustensilsList.includes(normalizedUstensil)){
             checkPlurials(normalizedUstensil, ustensilsList);
@@ -82,16 +82,17 @@ for (let i = 0; i < recipesList.length; i++){
 }
 
 function toLowerNormalize(result){
-    let lowerResult = result.toLowerCase();
-    let accentLessResult = lowerResult.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    const lowerResult = result.toLowerCase();
+    const accentLessResult = lowerResult.normalize("NFD").replace(/\p{Diacritic}/gu, "");
     return accentLessResult;
 }
 
 function checkPlurials(word, list){
     
-    let wordLength = word.length;
+    const wordLength = word.length;
     if(word.charAt(wordLength) == 's'){
-        let wordSingular = word.slice(0, wordLength -1);
+        const wordSingular = word.slice(0, wordLength -1);
+        console.log(wordSingular);
         if(list.includes(wordSingular)){
             return word = wordSingular;
         }
@@ -101,9 +102,9 @@ function checkPlurials(word, list){
     return word;
 }
 
-console.log(ingredientsList);
-console.log(appliancesList);
-console.log(ustensilsList);
+// console.log(ingredientsList);
+// console.log(appliancesList);
+// console.log(ustensilsList);
 
 // search engine
 
@@ -112,19 +113,19 @@ for(input of inputs){
     input.addEventListener('click', (e)=> {
         
         // get input name
-        let target = e.target;
-        let inputName = target.id;
+        const target = e.target;
+        const inputName = target.id;
         
         if(inputName == 'search'){
             // concat Lists
-            let concatList = ingredientsList.concat(appliancesList.concat(ustensilsList));
+            const concatList = ingredientsList.concat(appliancesList.concat(ustensilsList));
             // get input value & compare
             compareChars(concatList, target);
             // append choices
         }else if('ingredients'|'appliances'|'ustensils'){
             // get list name
-            let listName = inputName + 'List';
-            let list = eval(listName);
+            const listName = inputName + 'List';
+            const list = eval(listName);
 
             if(list[0] !== undefined){
                 // get input value
@@ -140,16 +141,16 @@ function compareChars(list, input){
     // create comparaison array
     input.addEventListener('keyup',(e)=> {
         // listen to keyboards
-        let CharsIndexArray = [];
+        const CharsIndexArray = [];
         
         if(input.value !== ""){
-            let charsNumber = input.value.length;
+            const charsNumber = input.value.length;
             
             for (i=0; i<list.length; i++){
-                let current = typeof list[i];
+                const current = typeof list[i];
                 // checking for type string
                 if(current == "string"){
-                    let slicedString = list[i].slice(0, charsNumber);
+                    const slicedString = list[i].slice(0, charsNumber);
                     // compare
                     if(slicedString === input.value){
                         CharsIndexArray.push(i);
@@ -162,10 +163,10 @@ function compareChars(list, input){
 }
 
 function getMatchingId(list, CharsIndexArray){
-    let recipesResultArray = [];
+    const recipesResultArray = [];
     
     for(results of CharsIndexArray){
-        let recipesId = list[results +1];
+        const recipesId = list[results +1];
         for(recipeId of recipesId){
             if(!recipesResultArray.includes(recipeId)){
                 recipesResultArray.push(recipeId);
@@ -176,35 +177,43 @@ function getMatchingId(list, CharsIndexArray){
 }
 
 function getMatchingRecipes(recipesResultArray){
+    let ingredientsArray = [];
+    let appliancesArray = [];
+    let ustensilsArray = [];
     
     for(result of recipesResultArray){
-        console.log(recipesList[result]);
+        // console.log(recipesList[result]);
+        ingredientsArray = ingredientsArray.concat(recipesList[result].ingredients); 
+        appliancesArray = appliancesArray.concat(recipesList[result].appliance); 
+        ustensilsArray = ustensilsArray.concat(recipesList[result].ustensils);
     }
+    // console.log({ingredientsArray, appliancesArray, ustensilsArray});
+    addChoices(ingredientsArray, appliancesArray, ustensilsArray);
 }
 
 // boucle avec Regex
 
 // function createString(array, target){
     
-//     let flatArray = array.flat();
-//     let filteredArray = flatArray.filter(element => isNaN(element));
-//     let sepArray=[];
+//     const flatArray = array.flat();
+//     const filteredArray = flatArray.filter(element => isNaN(element));
+//     const sepArray=[];
 //     for(element of filteredArray){
-//         let sepEl = element.replace(/\s/g, '+');
+//         const sepEl = element.replace(/\s/g, '+');
 //         sepArray.push(sepEl);
 //     }
 
-//     let stringArray = sepArray.join('|');
+//     const stringArray = sepArray.join('|');
 //     compareInputValue(target, stringArray);
 // }
 
 // function compareInputValue(input, list){
 //     input.addEventListener('keyup', (e)=> {
-//         let inputReg = new RegExp(`${input.value}`,"gi");
+//         const inputReg = new RegExp(`${input.value}`,"gi");
 //         console.log(list);
 //         console.log(inputReg);
 //         // console.log(inputReg);
-//         let matchesResult;
+//         const matchesResult;
 //         while((matchesResult = inputReg.exec(list)) !== null) {
 //             console.log(`${matchesResult[0]} , ${inputReg.lastIndex}`);
 //             // retrouver correspondance indexes
@@ -217,15 +226,18 @@ function getMatchingRecipes(recipesResultArray){
 function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     
     // ingredients
-    let ingredientDataList= document.querySelector('#ingredientsData');
+    const ingredientDataList= document.querySelector('#ingredientsData');
     for(element of ingredientsArray){
+
+        console.log(element.ingredient);
+
         // add ingredient List in datalist
-        const ingredientOption = `<option value="${element}">`;
+        const ingredientOption = `<option value="${element.ingredient}">`;
         ingredientDataList.insertAdjacentHTML('afterbegin', ingredientOption)
     }
     //appliances
-    console.log(appliancesArray);
-    let appliancesDataList = document.querySelector('#appliancesData');
+    // console.log(appliancesArray);
+    const appliancesDataList = document.querySelector('#appliancesData');
     for(element of appliancesArray){
         // add appliances List in datalist
         const appliancesOption = `<option value="${element}">`;
@@ -233,8 +245,8 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     }
 
     // ustensils
-    console.log(ustensilsArray);
-    let ustensilsDataList = document.querySelector('#ustensilsData');
+    // console.log(ustensilsArray);
+    const ustensilsDataList = document.querySelector('#ustensilsData');
     for(element of ustensilsArray){
         // add ustensils List in datalist
         const ustensilsOption = `<option value="${element}">`;
@@ -247,8 +259,8 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
 
 
 // add cards to page
-let indexes = [1, 2, 3, 4, 5, 6];
-let mainTag = document.querySelector("main");
+const indexes = [1, 2, 3, 4, 5, 6];
+const mainTag = document.querySelector("main");
 let x = 0;
 for(index of indexes){
     if(x%3 == 0 && x!==0){
@@ -268,8 +280,8 @@ for(index of indexes){
 }
 
 function addCards(index){
-    let cardsDecks = document.querySelectorAll(".card-deck");
-    let cardsDeck = cardsDecks[cardsDecks.length - 1];
+    const cardsDecks = document.querySelectorAll(".card-deck");
+    const cardsDeck = cardsDecks[cardsDecks.length - 1];
 
     const cardsPattern = `
     <div class="card">

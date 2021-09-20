@@ -1,5 +1,5 @@
 // reset on refresh
-let inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll('input');
 
 window.onload = function(){
     for(input of inputs){
@@ -11,40 +11,40 @@ window.onload = function(){
 const recipesList = recipes;
 
 function toLowerNormalize(result){
-    let lowerResult = result.toLowerCase();
-    let accentLessResult = lowerResult.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    const lowerResult = result.toLowerCase();
+    const accentLessResult = lowerResult.normalize("NFD").replace(/\p{Diacritic}/gu, "");
     return accentLessResult;
 }
 
 // search engine
 
 // create result array
-let ingredientsArray = [];
-let appliancesArray = [];
-let ustensilsArray = [];
+const ingredientsArray = [];
+const appliancesArray = [];
+const ustensilsArray = [];
 
 for(input of inputs){
     input.addEventListener('click', (e)=> {
         
         // get input name
-        let inputName = e.target.id;
+        const inputName = e.target.id;
         e.target.addEventListener('keyup', (e)=> {
             
             if (e.target.value !== '' && e.target !== undefined){
                 // get input value
-                let inputReg = new RegExp(`${e.target.value}`,"gi");
+                const inputReg = new RegExp(`${e.target.value}`,"gi");
                 // set regex wth input value
                 for (i=0; i< recipesList.length; i++){
                     // ingredients
                     if(inputName == 'search' || 'ingredients'){
-                        let ingredientsLists = recipesList[i].ingredients;
+                        const ingredientsLists = recipesList[i].ingredients;
                         
                         createIngredientsArray(inputReg, ingredientsLists);
                         // for (ingredientsList of ingredientsLists){
                         //     // ingredient
-                        //     let ingredient = ingredientsList.ingredient;
+                        //     const ingredient = ingredientsList.ingredient;
                         //     // normalize
-                        //     let normalizedIngredient = toLowerNormalize(ingredient);
+                        //     const normalizedIngredient = toLowerNormalize(ingredient);
                         //     // test
                         //     if (inputReg.test(normalizedIngredient)){
                         //         if(!ingredientsArray.includes(normalizedIngredient)){
@@ -54,11 +54,11 @@ for(input of inputs){
                         // }
                         
                         // appliances
-                        let appliance = recipesList[i].appliance;
+                        const appliance = recipesList[i].appliance;
 
                         createAppliancesArray(inputReg, appliance);
                         // // normalize
-                        // let normalizedAppliance = toLowerNormalize(appliance);
+                        // const normalizedAppliance = toLowerNormalize(appliance);
                         // // test
                         // if (inputReg.test(normalizedAppliance)){
                         //     if(!appliancesArray.includes(normalizedAppliance)){
@@ -67,13 +67,13 @@ for(input of inputs){
                         // }
         
                         // ustensils
-                        let ustensilsList = recipesList[i].ustensils;
+                        const ustensilsList = recipesList[i].ustensils;
 
                         createUstensilsArray(inputReg, ustensilsList);
                         // // ustensil
                         // for(ustensil of ustensilsList){
                         //     // normalize
-                        //     let normalizedUstensil = toLowerNormalize(ustensil);
+                        //     const normalizedUstensil = toLowerNormalize(ustensil);
                         //     // test
                         //     if (inputReg.test(normalizedUstensil)){
                         //         if(!ustensilsArray.includes(normalizedUstensil)){
@@ -93,13 +93,13 @@ for(input of inputs){
 
 function createIngredientsArray(inputReg, ingredientsLists){
     // create 
-    // let ingredientsArray = [];
+    // const ingredientsArray = [];
     
     for (ingredientsList of ingredientsLists){
 
-        let ingredient = ingredientsList.ingredient;
+        const ingredient = ingredientsList.ingredient;
         // normalize
-        let normalizedIngredient = toLowerNormalize(ingredient);
+        const normalizedIngredient = toLowerNormalize(ingredient);
         // test
         if (inputReg.test(normalizedIngredient)){
             if(!ingredientsArray.includes(normalizedIngredient)){
@@ -112,9 +112,9 @@ function createIngredientsArray(inputReg, ingredientsLists){
 
 function createAppliancesArray(inputReg, appliance){
     // create
-    // let appliancesArray = [];
+    // const appliancesArray = [];
     // normalize
-    let normalizedAppliance = toLowerNormalize(appliance);
+    const normalizedAppliance = toLowerNormalize(appliance);
     // test
     if (inputReg.test(normalizedAppliance)){
         if(!appliancesArray.includes(normalizedAppliance)){
@@ -126,11 +126,11 @@ function createAppliancesArray(inputReg, appliance){
 
 function createUstensilsArray(inputReg, ustensilsList){
     // create
-    // let ustensilsArray = [];
+    // const ustensilsArray = [];
 
     for(ustensil of ustensilsList){
         // normalize
-        let normalizedUstensil = toLowerNormalize(ustensil);
+        const normalizedUstensil = toLowerNormalize(ustensil);
         // test
         if (inputReg.test(normalizedUstensil)){
             if(!ustensilsArray.includes(normalizedUstensil)){
@@ -148,7 +148,7 @@ function createUstensilsArray(inputReg, ustensilsList){
 function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     
     // ingredients
-    let ingredientDataList= document.querySelector('#ingredientsData');
+    const ingredientDataList= document.querySelector('#ingredientsData');
     for(element of ingredientsArray){
         // add ingredient List in datalist
         const ingredientOption = `<option value="${element}">`;
@@ -156,7 +156,7 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
     }
     //appliances
     console.log(appliancesArray);
-    let appliancesDataList = document.querySelector('#appliancesData');
+    const appliancesDataList = document.querySelector('#appliancesData');
     for(element of appliancesArray){
         // add appliances List in datalist
         const appliancesOption = `<option value="${element}">`;
@@ -165,7 +165,7 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
 
     // ustensils
     console.log(ustensilsArray);
-    let ustensilsDataList = document.querySelector('#ustensilsData');
+    const ustensilsDataList = document.querySelector('#ustensilsData');
     for(element of ustensilsArray){
         // add ustensils List in datalist
         const ustensilsOption = `<option value="${element}">`;
@@ -178,9 +178,9 @@ function addChoices(ingredientsArray, appliancesArray, ustensilsArray){
 
 
 // add cards to page
-let indexes = [1, 2, 3, 4, 5, 6];
-let mainTag = document.querySelector("main");
-let x = 0;
+const indexes = [1, 2, 3, 4, 5, 6];
+const mainTag = document.querySelector("main");
+const x = 0;
 for(index of indexes){
     if(x%3 == 0 && x!==0){
         const deckSup = `
@@ -199,8 +199,8 @@ for(index of indexes){
 }
 
 function addCards(index){
-    let cardsDecks = document.querySelectorAll(".card-deck");
-    let cardsDeck = cardsDecks[cardsDecks.length - 1];
+    const cardsDecks = document.querySelectorAll(".card-deck");
+    const cardsDeck = cardsDecks[cardsDecks.length - 1];
 
     const cardsPattern = `
     <div class="card">
