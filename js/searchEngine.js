@@ -5,11 +5,12 @@ function searchEngine(filteredArray, input){
     // filteredArrayen to keyboards
     input.addEventListener('keyup',(e)=> {
         e.stopPropagation();
-        
+
+        let inputValue = normalizeEntry(input.value);
+
         const CharsIndexArray = [];
-        console.log(e.keyCode)
-        if(input.value.length >= 3){
-            input.value
+        
+        if(inputValue.length >= 3){
             const charsNumber = input.value.length;
             
             for (i=0; i<filteredArray.length; i++){
@@ -18,7 +19,7 @@ function searchEngine(filteredArray, input){
                 if(currentEntry === "string"){
                     const slicedString = filteredArray[i].slice(0, charsNumber);
                     // compare
-                    if(slicedString === input.value){
+                    if(slicedString === inputValue){
                         CharsIndexArray.push(i);
                     }
                 }
@@ -26,6 +27,9 @@ function searchEngine(filteredArray, input){
             resetDataList();
             resetCards();
             getResults(filteredArray, CharsIndexArray);
+        }else if(inputValue === ''){
+            resetCards();
+            addCards(filteredArray);
         }
     });
 }

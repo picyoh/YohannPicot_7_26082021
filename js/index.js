@@ -52,6 +52,7 @@ function normalizeEntry(result){
     const normalizedResult = accentLessResult.toLowerCase();
     return normalizedResult;
 }
+
 // remove duplicates entries
 function checkDuplicata(result){
     const resultLength = result.length;

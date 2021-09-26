@@ -16,7 +16,17 @@ function addCards(array){
     console.log(indexes);
     // add a card deck to sorting cards by 3
     let x = 0;
+    let namesArray = [];
     for(index of indexes){
+
+        console.log(recipesArray[array[index][0][0]].name)
+        if(!namesArray.includes(recipesArray[array[index][0][0]].name)){
+            namesArray.push(recipesArray[array[index][0][0]].name);
+        }else{
+            index = index + 20;
+            namesArray.push(recipesArray[array[index][0][0]].name);
+        }
+        console.log(namesArray);
 
         if(x%3 == 0 && x!==0){
             const deckSup = `
@@ -38,7 +48,7 @@ function addCards(array){
 function randomIndexes(indexes, max){
     while(indexes.length < 6){
         let randomIndex = Math.floor(Math.random() * (max - 1));
-        if( randomIndex%2 !== 0){
+        if( randomIndex%2 !== 0 && (!indexes.includes(randomIndex))){
             indexes.push(randomIndex);
         }
 
