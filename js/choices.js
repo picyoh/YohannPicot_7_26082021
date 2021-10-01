@@ -29,3 +29,8 @@ function appendChoice(element, array){
     const customOption = `<option value="${element}">`;
     array.insertAdjacentHTML('afterbegin', customOption)
 }
+
+function addCustomerChoice(){
+    const optionData = document.querySelectorAll('option');
+    console.log(optionData);
+}

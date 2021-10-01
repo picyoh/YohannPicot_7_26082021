@@ -23,14 +23,19 @@ function addCards(array){
         if(!namesArray.includes(recipesArray[array[index][0][0]].name)){
             namesArray.push(recipesArray[array[index][0][0]].name);
         }else{
-            index = index + 20;
+            index = index + 10;
             namesArray.push(recipesArray[array[index][0][0]].name);
         }
         console.log(namesArray);
 
         if(x%3 == 0 && x!==0){
             const deckSup = `
-            <div class="card-deck">
+            <div class="row">
+              <div class="col">
+                <div class="card-deck my-3">
+
+                </div>
+              </div>
             </div>
             `;
             
@@ -62,20 +67,25 @@ function appendCards(index){
 
     const cardsPattern = `
     <div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h6 class="card-title">${recipesArray[index].name}</h5>
-          <p id="time" class="card-text"><i class="far fa-clock"></i>${recipesArray[index].time}</p>
-          ${recipesArray[index].ingredients.map(ingIndex =>
-            `
-          <p id="ingredientText" class="card-text">
-          ${ingIndex.ingredient} ${ingIndex.quantity ? `: `+ ingIndex.quantity : ingIndex.quantite ? `: ` + ingIndex.quantite : ''} ${ingIndex.unit ? ingIndex.unit : ''}            </p>
-          `
-            ).join('')}
-          <p id="ingredientText" class="card-text"></p>
-          <p id="description" class="card-text">${recipesArray[index].description}</p>
+        <img class="card-img-top bg-secondary" style="height: 302px" src="..." alt="">
+        <div class="card-body d-flex flex-column overflow-hidden" style="height: 302px; overflow:hidden; text-overflow: ellipsis" >
+            <h5 class="card-title d-flex">${recipesArray[index].name}<i class="far fa-clock ml-auto"><strong>${recipesArray[index].time}min</strong></i></h5>
+            <div class="row">
+                <div class="col-6">
+                ${recipesArray[index].ingredients.map(ingIndex =>
+                  `
+                <p id="ingredientText" class="card-text p-0 m-0">
+                <strong>${ingIndex.ingredient}</strong> ${ingIndex.quantity ? `: `+ ingIndex.quantity : ingIndex.quantite ? `: ` + ingIndex.quantite : ''} ${ingIndex.unit ? ingIndex.unit : ''}            </p>
+                `
+                  ).join('')}
+                </div>
+                <div class="col-6 ml-auto" >
+                <p id="description" class="card-text">${recipesArray[index].description}</p>
+                </div>
+            </div>
         </div>
     </div>
+    
     `;
     cardsDeck.insertAdjacentHTML('beforeend', cardsPattern);
     }

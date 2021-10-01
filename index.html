@@ -13,67 +13,77 @@
     <title>Les petits plats</title>
   </head>
   <body>
+    <!-- logo -->
     <div class="container-fluid">
-      <!-- logo -->
-      <div class="row">
+      <div class="row my-3">
         <div class="col">
           <header class="d-flex justify-content-center">
             <h1 class="d-none">Les petits plats</h1>
             <a href="">
-              <img height="120" src="logo/logo.png">
+              <img height="150" src="logo/logo.png">
             </a>
           </header>
         </div>
       </div>
-      <!-- searchbar -->
-      <div class="row d-flex justify-content-center">
+      <!-- searchbar -->  
+      <div class="row d-flex justify-content-center my-3">
         <div class="col col-11">
-          <form class="">
-            <div class="input-group rounded-3">
-              <label for="search"></label>
-              <input class="form-control form-control-lg border-0 px-2 bg-light"
-              id="search"
-              type="search" 
-              placeholder="Rechercher un ingredient, appareil, ustensiles ou une recette" 
-              aria-label="Search">
-              <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
-              </div>
+          <div class="input-group input-group-lg">
+            <input class="form-control border-0 rounded-3 px-3 input-group-text"
+            id="search"
+            type="search" 
+            placeholder="Rechercher un ingredient, appareil, ustensiles ou une recette" 
+            aria-label="Search">
+            <label for="search"></label>
+            <div class="input-group-append">
+              <span class="input-group-text border-0" id="basic-addon2"><i class="fas fa-search"></i></span>
             </div>
+          </div>
         </div>
       </div>
-      <div id="custumor-choices" class="row">
-      </div>
-      <!-- filters -->
+      <!-- customer choice -->
       <div class="row">
-        <div class="col">
-          <input id="ingredients" list="ingredientsData" class="custom-select custom-select-lg" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
-          <datalist id="ingredientsData">
-
-          </datalist>
-        </div>
-        <div class="col">
-          <input id="appliances" list="appliancesData" class="custom-select custom-select-lg" placeholder="Appareils" aria-label="filtre des ingredients avec menu déroulant">
-          <datalist id="appliancesData">
-            
-          </datalist>
-        </div>
-        <div class="col">
-          <input id="ustensils" list="ustensilsData" class="custom-select custom-select-lg" placeholder="Ustensiles" aria-label="filtre des ingredients avec menu déroulant">
-          <datalist id="ustensilsData">
-            
-          </datalist>
-        </div>
-      </div>
-      <!-- cards -->
-      <main>
-        <div class="card-deck">
+        <div id="custumor-choices" class="col col-11">
           
         </div>
-      </main>
-    </div>
-    <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      </div>
+      <!-- filters -->
+      <div class="row d-flex justify-content-center">
+        <div class="col col-11">
+          <div class="row d-flex justify-content-start my-3">
+            <div class="col col-lg-2">
+              <input id="ingredients" list="ingredientsData" class="custom-select custom-select py-4" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
+              <datalist id="ingredientsData">
+                
+              </datalist>
+            </div>
+            <div class="col col-lg-2">
+              <input id="appliances" list="appliancesData" class="custom-select custom-select py-4" placeholder="Appareils" aria-label="filtre des ingredients avec menu déroulant">
+              <datalist id="appliancesData">
+                
+              </datalist>
+            </div>
+            <div class="col col-lg-2">
+              <input id="ustensils" list="ustensilsData" class="custom-select custom-select py-4" placeholder="Ustensiles" aria-label="filtre des ingredients avec menu déroulant">
+              <datalist id="ustensilsData">
+                
+              </datalist>
+            </div>
+          </div>
+          <!-- cards -->
+          <main>
+            <div class="row">
+              <div class="col">
+                <div class="card-deck my-3">
+
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <!-- Bootstrap -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- js -->
