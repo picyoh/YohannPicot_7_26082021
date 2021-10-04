@@ -1,58 +1,67 @@
 
 // search engine
-function searchEngine(filteredArray, input){
+function searchEngine(array, input){
 
-    // filteredArrayen to keyboards
-    input.addEventListener('keyup',(e)=> {
-        e.stopPropagation();
-
-        let inputValue = normalizeEntry(input.value);
-
-        const CharsIndexArray = [];
+    // // array to keyboards
+    // input.addEventListener('keyup',(e)=> {
+    //     e.stopPropagation();
+    //     // create character matching array
+    //     const CharsIndexArray = [];
+    //     // normalize input
+    //     let inputValue = normalizeEntry(input.value);
+ 
         
-        if(inputValue.length >= 3){
-            const charsNumber = input.value.length;
-            
-            for (i=0; i<filteredArray.length; i++){
-                const currentEntry = typeof filteredArray[i];
-                // checking for type string
-                if(currentEntry === "string"){
-                    const slicedString = filteredArray[i].slice(0, charsNumber);
-                    // compare
-                    if(slicedString === inputValue){
-                        CharsIndexArray.push(i);
-                    }
-                }
-            }
-            resetDataList();
-            resetCards();
-            getResults(filteredArray, CharsIndexArray);
-        }else if(inputValue === ''){
-            resetCards();
-            addCards(filteredArray);
-        }
-    });
+    //     if(inputValue.length >= 3){
+    //         // set regex wth input value
+    //         const inputReg = new RegExp(`(^|\\s)${e.target.value}`);
+    //         console.log(inputReg);
+
+    //         for (i=0; i< recipesList.length; i++){
+    //             // ingredients
+    //             const ingredientsLists = recipesList[i].ingredients;
+                
+    //             for (j=0; j< ingredientsLists.length; j++){
+    //                 const actualIngredient = recipeIngredients[j].ingredient;
+    //                 const normalizedEntry = normalizeEntry(actualIngredient);
+    //                 console.log(normalizedEntry)
+    //                 // test
+    //                 if (inputReg.test(normalizedEntry)){
+    //                     filteredArray.push(i, j, null, actualIngredient);
+    //                 }
+    //             }
+                
+    //             // appliances
+    //             const actualApplicance = recipesArray[i].appliance;
+    //             const normalizedEntry = normalizeEntry(actualAppliance);
+    //             // entryFilter(i, null, null, actualApplicance);
+    //             // test
+    //             if (inputReg.test(normalizedEntry)){
+    //                 filteredArray.push(i, null, null, actualApplicance);
+    //             }
+
+    //             // ustensils
+    //             const ustensilsList = recipesList[i].ustensils;
+    //             // ustensil
+    //             for(j=0; j<ustensilsList.length; j++){
+    //                 // normalize
+    //                 const normalizedUstensil = normalizeEntry(ustensilsList[j]);
+    //                 // test
+    //                 if (inputReg.test(normalizedUstensil)){
+    //                     filteredArray.push(i, null, k, actualUstensil);
+    //                 }
+    //             }
+    //         }
+        
+    //         resetDataList();
+    //         resetCards();
+    //         addChoices(filteredArray);
+    //         addCards(filteredArray);
+    //     }else{
+    //         resetCards();
+    //         addCards(array);
+    //     }
+    // });
 }
 
-function getResults(filteredArray, CharsIndexArray){
-    // create array of results indexes
-    const resultsArray = [];
-    
-    for(results of CharsIndexArray){
-        const resultName = filteredArray[results];
-        const recipesIndex = filteredArray[results +1];
-
-        if(!resultsArray.includes(resultName)){
-            resultsArray.push(resultName);
-            resultsArray.push(recipesIndex);
-        }else if(resultsArray.includes(resultName)){
-            const actualIndex = resultsArray.findIndex(element => element === resultName);
-            console.log(resultsArray.findIndex(element => element === resultName))
-            resultsArray[actualIndex].push(recipesIndex);
-        }
-    }
-    addChoices(resultsArray);
-    addCards(resultsArray);
-}
 
 

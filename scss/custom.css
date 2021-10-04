@@ -1,53 +1,41 @@
-#ingredients {
-  background-color: #3282f7;
-}
-#ingredients::-moz-placeholder {
-  color: white;
-}
-#ingredients:-ms-input-placeholder {
-  color: white;
-}
-#ingredients::placeholder {
-  color: white;
-}
-
-#ingredientsBtn {
+.ingredients {
   background-color: #3282f7;
   color: white;
 }
-
-#appliances {
-  background-color: #68d9a4;
-}
-#appliances::-moz-placeholder {
+.ingredients::-moz-placeholder {
   color: white;
 }
-#appliances:-ms-input-placeholder {
+.ingredients:-ms-input-placeholder {
   color: white;
 }
-#appliances::placeholder {
+.ingredients::placeholder {
   color: white;
 }
 
-#appliancesBtn {
+.appliances {
   background-color: #68d9a4;
   color: white;
 }
-
-#ustensils {
-  background-color: #ed6454;
-}
-#ustensils::-moz-placeholder {
+.appliances::-moz-placeholder {
   color: white;
 }
-#ustensils:-ms-input-placeholder {
+.appliances:-ms-input-placeholder {
   color: white;
 }
-#ustensils::placeholder {
+.appliances::placeholder {
   color: white;
 }
 
-#ustensilsBtn {
+.ustensils {
   background-color: #ed6454;
+  color: white;
+}
+.ustensils::-moz-placeholder {
+  color: white;
+}
+.ustensils:-ms-input-placeholder {
+  color: white;
+}
+.ustensils::placeholder {
   color: white;
 }/*# sourceMappingURL=custom.css.map */

@@ -29,7 +29,7 @@
       <div class="row d-flex justify-content-center my-3">
         <div class="col col-11">
           <div class="input-group input-group-lg">
-            <input class="form-control border-0 rounded-3 px-3 input-group-text"
+            <input class="form-control input-group-text text-left border-0 rounded-3 px-3"
             id="search"
             type="search" 
             placeholder="Rechercher un ingredient, appareil, ustensiles ou une recette" 
@@ -51,23 +51,32 @@
       <div class="row d-flex justify-content-center">
         <div class="col col-11">
           <div class="row d-flex justify-content-start my-3">
-            <div class="col col-lg-2">
-              <input id="ingredients" list="ingredientsData" class="custom-select custom-select py-4" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
-              <datalist id="ingredientsData">
+            <div class="col col-2 btn-group">
+              <input id="ingredients" class="ingredients border-0 rounded-left pl-3" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
+              <button type="button" class="ingredients btn btn-lg dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div id="ingredientsData" class="ingredients dropdown-menu">
                 
-              </datalist>
+              </div>
             </div>
-            <div class="col col-lg-2">
-              <input id="appliances" list="appliancesData" class="custom-select custom-select py-4" placeholder="Appareils" aria-label="filtre des ingredients avec menu déroulant">
-              <datalist id="appliancesData">
+            <div class="col col-2 btn-group">
+              <input id="appliances" class="appliances border-0 rounded-left pl-3" placeholder="Appareils" aria-label="filtre des ingredients avec menu déroulant">
+              <button type="button" class="appliances btn btn-lg dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div id="appliancesData" class="appliances dropdown-menu">
                 
-              </datalist>
+              </div>
             </div>
-            <div class="col col-lg-2">
-              <input id="ustensils" list="ustensilsData" class="custom-select custom-select py-4" placeholder="Ustensiles" aria-label="filtre des ingredients avec menu déroulant">
-              <datalist id="ustensilsData">
+            <div class="col col-2 btn-group">
+              <input id="ustensils" class="ustensils border-0 rounded-left pl-3" placeholder="Ustensiles" aria-label="filtre des ingredients avec menu déroulant">
+              <button type="button" class="ustensils btn btn-lg dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div id="ustensilsData" class="ustensils dropdown-menu">
                 
-              </datalist>
+              </div>
             </div>
           </div>
           <!-- cards -->

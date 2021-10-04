@@ -3,30 +3,27 @@
 
 function addChoices(array){
     for(i = 0; i < array.length; i++){
-        if(typeof array[i] !== 'string'){
-            
+        // ingredients
+        const ingredientsList = recipesArray[i].ingredients;
+        for (j=0; j< ingredientsList.length; j++){
+            const actualIngredient = ingredientsList[j].ingredient;
+            appendChoice(actualIngredient, ingredientsDataArray);           
+        }        
+        // appliances
+        const actualApplicance = recipesArray[i].appliance;
+        appendChoice(actualApplicance, appliancesDataArray);
 
-            if(array[i][0][1] !== null){
-                const ingredientsData = recipesArray[array[i][0][0]].ingredients[array[i][0][1]].ingredient;
-                appendChoice(ingredientsData, ingredientsDataArray);
-            }
-            
-            if(array[i][0][2] !== null){
-                const ustensilsData = recipesArray[array[i][0][0]].ustensils[array[i][0][2]];
-                appendChoice(ustensilsData, ustensilsDataArray);
-            }
-
-            if(array[i][0][1] == null && array[i][0][2] == null){
-                const appliancesData = recipesArray[array[i][0][0]].appliance;
-                appendChoice(appliancesData, appliancesDataArray);
-            }
-
+        // ustensils
+        const ustensilsList = recipesArray[i].ustensils;
+        for(k=0; k<ustensilsList.length; k++){
+            const actualUstensil = ustensilsList[k];
+            appendChoice(actualUstensil, ustensilsDataArray)
         }
     }
 }
 
 function appendChoice(element, array){
-    const customOption = `<option value="${element}">`;
+    const customOption = `<a class="dropdown-item" href="#">${element}</a>`;
     array.insertAdjacentHTML('afterbegin', customOption)
 }
 

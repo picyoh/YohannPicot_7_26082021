@@ -8,25 +8,13 @@ function addCards(array){
     }
     else {
         for(i=0; i<array.length; i++){
-            if(typeof array[i] !== 'string'){
-                indexes.push(i)
-            }
+            indexes.push(i)
         }
     }
     console.log(indexes);
     // add a card deck to sorting cards by 3
     let x = 0;
-    let namesArray = [];
     for(index of indexes){
-
-        console.log(recipesArray[array[index][0][0]].name)
-        if(!namesArray.includes(recipesArray[array[index][0][0]].name)){
-            namesArray.push(recipesArray[array[index][0][0]].name);
-        }else{
-            index = index + 10;
-            namesArray.push(recipesArray[array[index][0][0]].name);
-        }
-        console.log(namesArray);
 
         if(x%3 == 0 && x!==0){
             const deckSup = `
@@ -40,11 +28,11 @@ function addCards(array){
             `;
             
             mainTag.insertAdjacentHTML('beforeend', deckSup);
-            appendCards(array[index][0][0]);
+            appendCards(index);
             x=0;
         }
         else{
-            appendCards(array[index][0][0]);
+            appendCards(index);
         }
         x++;
     }  
