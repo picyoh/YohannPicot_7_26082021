@@ -12,9 +12,9 @@ const dataListTag = document.querySelectorAll('datalist');
 const mainTag = document.querySelector("main");
 const cardsDecks = document.querySelectorAll(".card-deck");
 
-const ingredientsDataArray= document.querySelector('#ingredientsData');
-const appliancesDataArray = document.querySelector('#appliancesData');
-const ustensilsDataArray = document.querySelector('#ustensilsData');
+const ingredientsDataArray= document.querySelector('#ingredients');
+const appliancesDataArray = document.querySelector('#appliances');
+const ustensilsDataArray = document.querySelector('#ustensils');
 
 // reset inputs on refresh & launch
 window.onload = function(){

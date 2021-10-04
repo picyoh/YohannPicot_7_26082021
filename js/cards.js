@@ -26,16 +26,15 @@ function addCards(array){
             index = index + 10;
             namesArray.push(recipesArray[array[index][0][0]].name);
         }
-        console.log(namesArray);
-
+        
         if(x%3 == 0 && x!==0){
             const deckSup = `
             <div class="row">
-              <div class="col">
-                <div class="card-deck my-3">
-
-                </div>
-              </div>
+            <div class="col">
+            <div class="card-deck my-3">
+            
+            </div>
+            </div>
             </div>
             `;
             
@@ -48,6 +47,7 @@ function addCards(array){
         }
         x++;
     }  
+    console.log(namesArray);
 }
 
 function randomIndexes(indexes, max){

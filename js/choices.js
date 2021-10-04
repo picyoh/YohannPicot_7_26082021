@@ -4,7 +4,6 @@
 function addChoices(array){
     for(i = 0; i < array.length; i++){
         if(typeof array[i] !== 'string'){
-            
 
             if(array[i][0][1] !== null){
                 const ingredientsData = recipesArray[array[i][0][0]].ingredients[array[i][0][1]].ingredient;
@@ -20,17 +19,43 @@ function addChoices(array){
                 const appliancesData = recipesArray[array[i][0][0]].appliance;
                 appendChoice(appliancesData, appliancesDataArray);
             }
-
         }
     }
+    addCustomerChoice();
 }
 
 function appendChoice(element, array){
-    const customOption = `<option value="${element}">`;
+    const customOption = `<a class="dropdown-item" href="#">${element}</a>`;
     array.insertAdjacentHTML('afterbegin', customOption)
 }
 
 function addCustomerChoice(){
-    const optionData = document.querySelectorAll('option');
-    console.log(optionData);
+    const choicesList = document.querySelectorAll('.dropdown-item');
+    for(choice of choicesList){
+        choice.addEventListener('click', (e)=>{
+            appendCustomerChoice(e.target.parentNode.id, e.target.text)
+        });
+    }
+}
+
+function appendCustomerChoice(parent, name){
+    const choicesDiv = document.querySelector('#custumor-choices');
+    const choiceTag =`
+            <button type="button" class="${parent} col col-1 rounded border-0" aria-label="Close">
+                ${name}    
+                <i class="far fa-times-circle" aria-hidden="true"></i>
+            </button>
+    `;
+
+    choicesDiv.insertAdjacentHTML('afterbegin', choiceTag);
+    closeTags();
+}
+
+function closeTags(){
+    const closeBtns = document.querySelectorAll('.fa-times-circle');
+    for(closeBtn of closeBtns){
+        closeBtn.addEventListener('click', (e)=>{
+            e.target.parentNode.remove();
+        })
+    }
 }
