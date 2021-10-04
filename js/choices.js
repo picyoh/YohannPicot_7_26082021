@@ -33,6 +33,7 @@ function addCustomerChoice(){
     const choicesList = document.querySelectorAll('.dropdown-item');
     for(choice of choicesList){
         choice.addEventListener('click', (e)=>{
+            e.stopPropagation();
             appendCustomerChoice(e.target.parentNode.id, e.target.text)
         });
     }
@@ -55,6 +56,7 @@ function closeTags(){
     const closeBtns = document.querySelectorAll('.fa-times-circle');
     for(closeBtn of closeBtns){
         closeBtn.addEventListener('click', (e)=>{
+            e.stopPropagation();
             e.target.parentNode.remove();
         })
     }

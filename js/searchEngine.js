@@ -27,7 +27,7 @@ function searchEngine(filteredArray, input){
             resetDataList();
             resetCards();
             getResults(filteredArray, CharsIndexArray);
-        }else if(inputValue === ''){
+        }else if(inputValue < 3){
             resetCards();
             addCards(filteredArray);
         }
