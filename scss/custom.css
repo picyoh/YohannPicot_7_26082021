@@ -13,7 +13,6 @@
 }
 
 .appliances {
-  display: none;
   background-color: #68d9a4;
   color: white;
 }
@@ -28,7 +27,6 @@
 }
 
 .ustensils {
-  display: none;
   background-color: #ed6454;
   color: white;
 }
@@ -44,4 +42,18 @@
 
 .fa-times-circle {
   cursor: pointer;
+}
+
+.dropdown-menu.show {
+  width: 30vw;
+  max-height: 45vh;
+  display: flex;
+  flex-flow: row wrap;
+  overflow: auto;
+}
+
+.dropdown-item {
+  flex: 1 1 9vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }/*# sourceMappingURL=custom.css.map */

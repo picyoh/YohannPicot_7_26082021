@@ -26,7 +26,7 @@ function addChoices(array){
 function appendChoice(element, array){
     if(!checkDuplicata(element, array)){
         const customOption = `
-        <a class="dropdown-item" href="#">${element}</a>
+        <a class="dropdown-item col-4" href="#">${element}</a>
         `;
         array.insertAdjacentHTML('afterbegin', customOption)
     }
