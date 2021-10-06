@@ -7,6 +7,7 @@
 }
 
 .appliances{
+    display: none;
     background-color: #68d9a4;
     color: white;
     &::placeholder{
@@ -15,9 +16,14 @@
 }
 
 .ustensils{
+    display: none;
     background-color: #ed6454;
     color: white;
     &::placeholder{
         color:white;
     }
+}
+
+.fa-times-circle{
+    cursor: pointer;
 }

@@ -1,28 +1,22 @@
 // get recipes
 const recipesArray = recipes;
 
-const fullArray = [];
-// create filtered entries array
-const filteredArray = [];
-
 // get DOM elements
 const searchInput = document.querySelector('#search');
 const inputs = document.querySelectorAll('input');
-const dataListTag = document.querySelectorAll('datalist');
+const dataListTag = document.querySelectorAll('.dropdown-menu');
 
 const mainTag = document.querySelector("main");
 const cardsDecks = document.querySelectorAll(".card-deck");
 
-const ingredientsDataArray= document.querySelector('#ingredientsData');
-const appliancesDataArray = document.querySelector('#appliancesData');
-const ustensilsDataArray = document.querySelector('#ustensilsData');
+const ingredientsDataArray= document.querySelector('#ingredients');
+const appliancesDataArray = document.querySelector('#appliances');
+const ustensilsDataArray = document.querySelector('#ustensils');
 
 // reset inputs on refresh & launch
 window.onload = function(){
-    for(input of inputs){
-        input.value = '';
-    }
-    searchEngine(recipesArray, searchInput);
+    resetInputs();
+    sortEngine(recipesArray, searchInput);
     addChoices(recipesArray);
     addCards(recipesArray);
 }
@@ -38,6 +32,29 @@ function normalizeEntry(entry){
     return normalizedResult;
 }
 
+// remove duplicates entries
+function checkDuplicata(entry, array){
+    const normalizedEntry = normalizeEntry(entry);
+    
+    const entryLength = entry.length;
+    const entryPerc = parseInt(entryLength * 0.85);
+    
+    const entryTest = normalizedEntry.slice(0, entryPerc);
+    const entryReg = new RegExp(entryTest,'gi');
+
+    if(array.children[0] === undefined){
+        return false;
+    }else{
+        for (element of array.children){
+            const normEl = normalizeEntry(element.text)
+            const tested = entryReg.test(normEl);
+            if(tested === true){
+                return tested
+            }
+        }    
+    }
+}
+
 // reset dataList
 function resetDataList(){
     for (element of dataListTag){
@@ -47,7 +64,7 @@ function resetDataList(){
     }
 }
 
-// reste cards
+// reset cards
 function resetCards(){
     while (mainTag.firstChild){
         mainTag.removeChild(mainTag.firstChild);
@@ -56,6 +73,13 @@ function resetCards(){
     firstCardDeck.className = 'card-deck';
     mainTag.append(firstCardDeck);
 
+}
+
+// reset Inputs
+function resetInputs(){
+    for(input of inputs){
+        input.value = '';
+    }
 }
 
 

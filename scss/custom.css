@@ -13,6 +13,7 @@
 }
 
 .appliances {
+  display: none;
   background-color: #68d9a4;
   color: white;
 }
@@ -27,6 +28,7 @@
 }
 
 .ustensils {
+  display: none;
   background-color: #ed6454;
   color: white;
 }
@@ -38,4 +40,8 @@
 }
 .ustensils::placeholder {
   color: white;
+}
+
+.fa-times-circle {
+  cursor: pointer;
 }/*# sourceMappingURL=custom.css.map */

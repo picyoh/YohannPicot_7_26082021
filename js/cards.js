@@ -8,7 +8,7 @@ function addCards(array){
     }
     else {
         for(i=0; i<array.length; i++){
-            indexes.push(i)
+            indexes.push(array[i].id -1)
         }
     }
     console.log(indexes);
