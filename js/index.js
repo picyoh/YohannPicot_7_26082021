@@ -22,18 +22,20 @@ window.onload = function(){
 }
 
 function triggerSearch(){
-    searchInput.addEventListener('keyup',(e)=> {
-        e.stopPropagation();
-        console.log(e.target.value)
-        if(e.target.value.length >= 3){
-            searchEngine(e.target.value, recipesArray);
-        }else if(e.target.value === ''){
-            // resetInputs();
-            // resetData();
-            // addChoices(recipesArray);
-            // addCards(recipesArray);
-        }
-    });
+    for(input of inputs){
+        input.addEventListener('keyup',(e)=> {
+            e.stopPropagation();
+            console.log(e.target.value)
+            if(e.target.value.length >= 3){
+                searchEngine(e.target.value, recipesArray);
+            }else if(e.target.value >= 1 && e.key === 'Backspace'){
+                // resetInputs();
+                // resetData();
+                // addChoices(recipesArray);
+                // addCards(recipesArray);
+            }
+        });
+    }
 }
 
 // normalize

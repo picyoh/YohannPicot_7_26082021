@@ -42,6 +42,7 @@ function searchEngine(input, array){
                     filteredArray.push([i, k, ustensilsDataArray]);
                 }
             }
+            // description 
         }
         resetData();
         console.log(filteredArray)

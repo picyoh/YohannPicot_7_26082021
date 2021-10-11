@@ -56,6 +56,7 @@ function appendCustomerChoice(parent, name){
 
     choicesDiv.insertAdjacentHTML('afterbegin', choiceTag);
     searchEngine(name, recipesArray);
+    resetInputs();
     closeTags();
 }
 
