@@ -16,9 +16,24 @@ const ustensilsDataArray = document.querySelector('#ustensils');
 // reset inputs on refresh & launch
 window.onload = function(){
     resetInputs();
-    sortEngine(recipesArray, searchInput);
+    triggerSearch();
     addChoices(recipesArray);
     addCards(recipesArray);
+}
+
+function triggerSearch(){
+    searchInput.addEventListener('keyup',(e)=> {
+        e.stopPropagation();
+        console.log(e.target.value)
+        if(e.target.value.length >= 3){
+            searchEngine(e.target.value, recipesArray);
+        }else if(e.target.value === ''){
+            // resetInputs();
+            // resetData();
+            // addChoices(recipesArray);
+            // addCards(recipesArray);
+        }
+    });
 }
 
 // normalize
@@ -37,7 +52,7 @@ function checkDuplicata(entry, array){
     const normalizedEntry = normalizeEntry(entry);
     
     const entryLength = entry.length;
-    const entryPerc = parseInt(entryLength * 0.85);
+    const entryPerc = parseInt(entryLength * 0.80);
     
     const entryTest = normalizedEntry.slice(0, entryPerc);
     const entryReg = new RegExp(entryTest,'gi');
@@ -55,24 +70,21 @@ function checkDuplicata(entry, array){
     }
 }
 
-// reset dataList
-function resetDataList(){
+function resetData(){
+    // reset dataList
     for (element of dataListTag){
         while (element.firstChild){
             element.removeChild(element.firstChild);
         }
     }
-}
 
-// reset cards
-function resetCards(){
+    // reset cards
     while (mainTag.firstChild){
         mainTag.removeChild(mainTag.firstChild);
     }
     const firstCardDeck = document.createElement('div');
     firstCardDeck.className = 'card-deck';
     mainTag.append(firstCardDeck);
-
 }
 
 // reset Inputs

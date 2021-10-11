@@ -1,4 +1,5 @@
 function addCards(array){
+    console.log(array)
     // add cards to page
     
     let indexes=[];
@@ -41,7 +42,7 @@ function addCards(array){
 function randomIndexes(indexes, max){
     while(indexes.length < 6){
         let randomIndex = Math.floor(Math.random() * (max - 1));
-        if( randomIndex%2 !== 0 && (!indexes.includes(randomIndex))){
+        if(!indexes.includes(randomIndex)){
             indexes.push(randomIndex);
         }
 
@@ -55,8 +56,8 @@ function appendCards(index){
 
     const cardsPattern = `
     <div class="card">
-        <img class="card-img-top bg-secondary" style="height: 302px" src="..." alt="">
-        <div class="card-body d-flex flex-column overflow-hidden" style="height: 302px; overflow:hidden; text-overflow: ellipsis" >
+        <img class="card-img-top bg-secondary" style="height: 320px" src="..." alt="">
+        <div class="card-body d-flex flex-column overflow-hidden" style="height: 320px; overflow:hidden; text-overflow: ellipsis" >
             <h5 class="card-title d-flex">${recipesArray[index].name}<i class="far fa-clock ml-auto"><strong>${recipesArray[index].time}min</strong></i></h5>
             <div class="row">
                 <div class="col-6">
@@ -68,7 +69,7 @@ function appendCards(index){
                   ).join('')}
                 </div>
                 <div class="col-6 ml-auto" >
-                <p id="description" class="card-text">${recipesArray[index].description}</p>
+                <p id="description" class="card-text" style="max-height: 220px; overflow: hidden; text-overflow:ellipsis;">${recipesArray[index].description}</p>
                 </div>
             </div>
         </div>

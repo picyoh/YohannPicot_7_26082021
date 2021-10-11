@@ -20,18 +20,20 @@ function addChoices(array){
             appendChoice(actualUstensil, ustensilsDataArray)
         }
     }
-    addCustomerChoice()
 }
 
+// apprend elements in choices list
 function appendChoice(element, array){
     if(!checkDuplicata(element, array)){
         const customOption = `
-        <a class="dropdown-item col-4" href="#">${element}</a>
+        <a class="dropdown-item" href="#">${element}</a>
         `;
         array.insertAdjacentHTML('afterbegin', customOption)
     }
+    addCustomerChoice()
 }
 
+// trigger customer choice
 function addCustomerChoice(){
     const choicesList = document.querySelectorAll('.dropdown-item');
     for(choice of choicesList){
@@ -42,6 +44,7 @@ function addCustomerChoice(){
     }
 }
 
+// add tags with customer choice
 function appendCustomerChoice(parent, name){
     const choicesDiv = document.querySelector('#custumor-choices');
     const choiceTag =`
@@ -52,15 +55,20 @@ function appendCustomerChoice(parent, name){
     `;
 
     choicesDiv.insertAdjacentHTML('afterbegin', choiceTag);
+    searchEngine(name, recipesArray);
     closeTags();
 }
 
+// close Tags
 function closeTags(){
     const closeBtns = document.querySelectorAll('.fa-times-circle');
     for(closeBtn of closeBtns){
         closeBtn.addEventListener('click', (e)=>{
             e.stopPropagation();
             e.target.parentNode.remove();
+            resetData();
+            addChoices(recipesArray);
+            addCards(recipesArray);
         })
     }
 }
