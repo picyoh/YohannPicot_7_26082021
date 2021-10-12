@@ -1,5 +1,6 @@
 // search engine
-function searchEngine(input, array){
+function searchEngine(input, parentRef){
+    
     // create filtered entries array
     const filteredArray = [];
     // normalize input
@@ -10,36 +11,18 @@ function searchEngine(input, array){
         console.log(inputReg);
 
         for (i=0; i< array.length; i++){
-            // ingredients
-            const ingredientsLists = array[i].ingredients;
+            
+            const parent = parentRef.key;
 
-            for (j=0; j< ingredientsLists.length; j++){
-                const actualIngredient = ingredientsLists[j].ingredient;
-                const normalizedEntry = normalizeEntry(actualIngredient);
-                // test
-                if (inputReg.test(normalizedEntry)){
-                    filteredArray.push([i, j, ingredientsDataArray])
+            if (parent = ingedients || ustensils){
+                for (let j = 0; j < recipesList[i].parent.length; j++){
+                    if (inputReg.test(normalizeEntry(recipesList[i].parentRef.value))){
+                        filteredArray.push(i, j, )
+                    }
                 }
-            }
+            } else {
+                if (inputReg.test(normalizeEntry(recipesList[i].parentRef.value))){
 
-            // appliances
-            const actualAppliance = recipesArray[i].appliance;
-            const normalizedEntry = normalizeEntry(actualAppliance);
-            // entryFilter(i, null, null, actualApplicance);
-            // test
-            if (inputReg.test(normalizedEntry)){
-                filteredArray.push([i, null, appliancesDataArray]);
-            }
-
-            // ustensils
-            const ustensilsList = array[i].ustensils;
-            // ustensil
-            for(k=0; k<ustensilsList.length; k++){
-                // normalize
-                const normalizedEntry = normalizeEntry(ustensilsList[k]);
-                // test
-                if (inputReg.test(normalizedEntry)){
-                    filteredArray.push([i, k, ustensilsDataArray]);
                 }
             }
             // description 

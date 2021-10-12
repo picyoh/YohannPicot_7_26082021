@@ -1,5 +1,4 @@
 function addCards(array){
-    console.log(array)
     // add cards to page
     
     let indexes=[];

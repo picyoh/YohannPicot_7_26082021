@@ -9,34 +9,41 @@ const dataListTag = document.querySelectorAll('.dropdown-menu');
 const mainTag = document.querySelector("main");
 const cardsDecks = document.querySelectorAll(".card-deck");
 
-const ingredientsDataArray= document.querySelector('#ingredients');
-const appliancesDataArray = document.querySelector('#appliances');
-const ustensilsDataArray = document.querySelector('#ustensils');
+const ingredientsDataArray= document.querySelector('#ingredientsData');
+const appliancesDataArray = document.querySelector('#appliancesData');
+const ustensilsDataArray = document.querySelector('#ustensilsData');
 
 // reset inputs on refresh & launch
 window.onload = function(){
     resetInputs();
-    triggerSearch();
-    addChoices(recipesArray);
+    ListenTrigger();
     addCards(recipesArray);
 }
 
-function triggerSearch(){
+function ListenTrigger(){
+    let parentRef = {
+        "ingredients" : "ingredients[j].ingredient",
+        "ustensils" : "ustensils[j]"
+    }
+
     for(input of inputs){
         input.addEventListener('keyup',(e)=> {
-            e.stopPropagation();
-            console.log(e.target.value)
             if(e.target.value.length >= 3){
-                searchEngine(e.target.value, recipesArray);
+
+                let parentId = e.target.id;
+                console.log( parentId);
+                // searchEngine(e.target.value, recipesArray);
             }else if(e.target.value >= 1 && e.key === 'Backspace'){
                 // resetInputs();
                 // resetData();
                 // addChoices(recipesArray);
                 // addCards(recipesArray);
             }
+            e.stopPropagation();
         });
     }
 }
+
 
 // normalize
 function normalizeEntry(entry){
@@ -47,29 +54,6 @@ function normalizeEntry(entry){
     // replace Capitals
     const normalizedResult = accentLessResult.toLowerCase();
     return normalizedResult;
-}
-
-// remove duplicates entries
-function checkDuplicata(entry, array){
-    const normalizedEntry = normalizeEntry(entry);
-    
-    const entryLength = entry.length;
-    const entryPerc = parseInt(entryLength * 0.80);
-    
-    const entryTest = normalizedEntry.slice(0, entryPerc);
-    const entryReg = new RegExp(entryTest,'gi');
-
-    if(array.children[0] === undefined){
-        return false;
-    }else{
-        for (element of array.children){
-            const normEl = normalizeEntry(element.text)
-            const tested = entryReg.test(normEl);
-            if(tested === true){
-                return tested
-            }
-        }    
-    }
 }
 
 function resetData(){
@@ -84,6 +68,7 @@ function resetData(){
     while (mainTag.firstChild){
         mainTag.removeChild(mainTag.firstChild);
     }
+    // append first card-deck
     const firstCardDeck = document.createElement('div');
     firstCardDeck.className = 'card-deck';
     mainTag.append(firstCardDeck);

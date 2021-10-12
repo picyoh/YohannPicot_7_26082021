@@ -26,29 +26,3 @@
     cursor: pointer;
 }
 
-.btn-group.show{
-    width: 50%;
-    button{
-        width: 100%;
-    }
-    input{
-        width: 95%;
-    }
-}
-
-.dropdown-menu.show{
-    width: 100%;
-    max-height: 45vh;
-    display: flex;
-    flex-flow:column wrap;
-    overflow: auto;
-}
-
-.dropdown-item{
-    max-width:33%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-}
-
-
