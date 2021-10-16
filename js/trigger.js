@@ -51,7 +51,6 @@ function triggerCustomerChoice(){
                 // get parent name
                 const classSplit = e.target.parentNode.parentNode.className.split(' ');
                 const parent = classSplit[0];
-                console.log(parent)
                 appendCustomerChoice(parent, e.target.text);
             })
         }(i));

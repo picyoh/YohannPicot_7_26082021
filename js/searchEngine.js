@@ -109,10 +109,10 @@ function getResult(array, list){
             }
         }
     }    
-    console.log(filteredList);
-    console.log(ingredientsArray);
-    console.log(appliancesArray);
-    console.log(ustensilsArray);
+    // console.log(filteredList);
+    // console.log(ingredientsArray);
+    // console.log(appliancesArray);
+    // console.log(ustensilsArray);
     
     // reset filtered indexes
     addCards(filteredList);
