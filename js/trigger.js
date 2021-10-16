@@ -10,11 +10,10 @@ function triggerSearch(){
                 filterList(e.target.value, id, recipesList);
             }
             refreshDisplay(filteredArray, recipesList);
-
-        }else if(e.target.value.length === 1 && e.key === 'Backspace'){
+        }else if(e.target.value.length === 0){
             resetInputs();
             resetDatas();
-            addCards(filteredArray, recipesList);
+            addCards(recipesList);
         }
         e.stopPropagation();
     });

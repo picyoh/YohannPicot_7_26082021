@@ -17,7 +17,7 @@ function addCards(list){
         }
     }
     
-    console.log(indexes);
+    // console.log(indexes);
     // add a card deck to sorting cards by 3
     let x = 0;
     for(index of indexes){

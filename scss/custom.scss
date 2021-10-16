@@ -38,6 +38,7 @@
     display: flex;
     
     .dropdown-item{
+        width: 8vw;
         overflow: hidden;
         text-overflow: ellipsis;
     }

@@ -76,8 +76,6 @@ function getResult(array, list){
     appliancesArray = [];
     ustensilsArray = [];
 
-    console.log(filteredArray)
-
     for(i of array){
         // cards
         if(!filteredList.includes(list[i])){
@@ -110,10 +108,10 @@ function getResult(array, list){
             }
         }
     }    
-    console.log(filteredList);
-    console.log(ingredientsArray);
-    console.log(appliancesArray);
-    console.log(ustensilsArray);
+    // console.log(filteredList);
+    // console.log(ingredientsArray);
+    // console.log(appliancesArray);
+    // console.log(ustensilsArray);
     
     // reset filtered indexes
     addCards(filteredList);
@@ -145,8 +143,6 @@ function filterChoices(input, parentId){
     console.log(targetArray);
     console.log(inputReg)
     for(i = targetArray.length -1; i >= 0; i--){
-        console.log(i);
-        console.log(inputReg.test(normalizeEntry(targetArray[i])));
         if (inputReg.test(normalizeEntry(targetArray[i]))){
             appendChoice(targetArray[i], targetTag);
         }else{
