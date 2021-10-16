@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+.fontAwesome {
+  font-family: inherit, FontAwesome, sans-serif;
+}
+
+>>>>>>> reg1
 .ingredients {
   background-color: #3282f7;
   color: white;
@@ -42,4 +49,20 @@
 
 .fa-times-circle {
   cursor: pointer;
+<<<<<<< HEAD
+=======
+}
+
+.dropdown-toggle::after {
+  border: none !important;
+}
+
+.dropdown .show {
+  display: flex;
+}
+.dropdown .show .dropdown-item {
+  width: 8vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+>>>>>>> reg1
 }/*# sourceMappingURL=custom.css.map */

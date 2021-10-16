@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+.fontAwesome {
+    font-family: inherit, FontAwesome, sans-serif;
+  }
+
+>>>>>>> reg1
 .ingredients {
     background-color: #3282f7;
     color: white;
@@ -6,7 +13,10 @@
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> reg1
 .appliances{
     background-color: #68d9a4;
     color: white;
@@ -15,7 +25,10 @@
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> reg1
 .ustensils{
     background-color: #ed6454;
     color: white;
@@ -26,4 +39,21 @@
 
 .fa-times-circle{
     cursor: pointer;
+<<<<<<< HEAD
+=======
+}
+
+.dropdown-toggle::after{
+    border: none !important;
+}
+
+.dropdown .show {
+    display: flex;
+    
+    .dropdown-item{
+        width: 8vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+>>>>>>> reg1
 }

@@ -20,7 +20,7 @@
           <header class="d-flex justify-content-center">
             <h1 class="d-none">Les petits plats</h1>
             <a href="">
-              <img height="150" src="logo/logo.png">
+              <img src="logo/logo.png" class="img-fluid">
             </a>
           </header>
         </div>
@@ -36,13 +36,20 @@
             aria-label="Search">
             <label for="search"></label>
             <div class="input-group-append">
-              <span class="input-group-text border-0" id="basic-addon2"><i class="fas fa-search"></i></span>
+              <span class="input-group-text border-0" id="basic-addon2">
+                <i class="fas fa-search"></i>
+              </span>
             </div>
           </div>
         </div>
       </div>
       <!-- customer choice -->
+<<<<<<< HEAD
       <div class="row d-flex justify-content-center">
+=======
+      <div class="row dflex justify-content-center">
+        
+>>>>>>> reg1
         <div id="custumor-choices" class="col col-11">
           
         </div>
@@ -50,6 +57,7 @@
       <!-- filters -->
       <div class="row d-flex justify-content-center">
         <div class="col col-11">
+<<<<<<< HEAD
           <div class="row d-flex justify-content-start my-3">
             <div class="col col-2 btn-group">
               <input class="ingredients border-0 rounded-left pl-3" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
@@ -77,6 +85,65 @@
               <div id="ustensils" class="ustensils dropdown-menu">
                 
               </div>
+=======
+          <div class="btn-toolbar d-flex justify-content-start">
+            <div class="dropdown m-2">
+              <button type="button" 
+                      class="ingredients btn btn-lg btn-default dropdown-toggle" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false">
+                <input id="ingredients" 
+                       class="ingredients advSearch border-0 btn p-0 text-left" 
+                       placeholder="Ingredients" 
+                       aria-label="filtre des ingredients avec menu déroulant">
+                <span class="sr-only">Toggle Dropdown</span>
+                <div id="ingredientsData" class="ingredients dropdown-menu">
+                  <div class="col datacol">
+
+                  </div>
+                </div>
+                <span class="fas fa-angle-down"></span>
+              </button>
+            </div>
+            <div class="dropdown m-2">
+              <button type="button" 
+                      class="appliances advSearch btn btn-lg btn-default dropdown-toggle" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false">
+                <input id="appliances" 
+                       class="appliances border-0 btn p-0 text-left" 
+                       placeholder="Appareils" 
+                       aria-label="filtre des ingredients avec menu déroulant">
+                <span class="sr-only">Toggle Dropdown</span>
+                <div id="appliancesData" class="appliances dropdown-menu">
+                  <div class="col datacol">
+
+                  </div>
+                </div>
+                <span class="fas fa-angle-down"></span>
+              </button>
+            </div>
+            <div class="dropdown m-2">
+              <button type="button" 
+                      class="ustensils advSearch btn btn-lg btn-default dropdown-toggle" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false">
+                <input id="ustensils" 
+                       class="ustensils border-0 btn p-0 text-left" 
+                       placeholder="Ustensiles" 
+                       aria-label="filtre des ingredients avec menu déroulant">
+                <span class="sr-only">Toggle Dropdown</span>
+                <div id="ustensilsData" class="ustensils dropdown-menu">
+                  <div class="col datacol">
+
+                  </div>
+                </div>
+                <span class="fas fa-angle-down"></span>
+              </button>
+>>>>>>> reg1
             </div>
           </div>
           <!-- cards -->
@@ -97,9 +164,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- js -->
     <script src="data/recipes.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/searchEngine.js"></script>
     <script src="js/choices.js"></script>
     <script src="js/cards.js"></script>
+    <script src="js/searchEngine.js"></script>
+    <script src="js/reset.js"></script>
+    <script src="js/trigger.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
