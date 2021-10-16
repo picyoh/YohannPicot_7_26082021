@@ -29,7 +29,8 @@ function init(){
     triggerSearch();
     triggerAdVSearch();
     hideDropdown();
-    inputFocus(); 
+    inputFocus();
+    changeArrow();
     addCards(recipesList);
 }
 

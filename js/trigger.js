@@ -61,7 +61,6 @@ function triggerCustomerChoice(){
 // hide dropdown if empty
 function hideDropdown(){
     $('.dropdown').on('show.bs.dropdown',function(e) {
-        console.log($('.dropdown-item').length, e.target)
         if($('.dropdown-item').length == 0){
             $('.dropdown-menu').addClass('d-none');
         }else{
@@ -74,6 +73,18 @@ function hideDropdown(){
 function inputFocus(){
     $('.dropdown').on('shown.bs.dropdown', function(e) {
         e.target.children[0].children[0].focus();
+    })
+}
+
+function changeArrow(){
+    $('.dropdown').on('show.bs.dropdown', function(e) {
+        e.target.children[0].children[3].className = "fas fa-angle-up";
+
+    })
+
+    $('.dropdown').on('hide.bs.dropdown', function(e) {
+        e.target.children[0].children[3].className = "fas fa-angle-down";
+
     })
 }
 
