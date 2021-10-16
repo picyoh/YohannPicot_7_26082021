@@ -10,6 +10,7 @@ function triggerSearch(){
                 filterList(e.target.value, id, recipesList);
             }
             refreshDisplay(filteredArray, recipesList);
+            triggerCustomerChoice();
         }else if(e.target.value.length === 0){
             resetInputs();
             resetDatas();
@@ -28,10 +29,12 @@ function triggerAdVSearch(){
                     filterList(e.target.value, e.target.id, recipesList)
                     refreshDisplay(filteredArray, recipesList);
                     filterChoices(e.target.value, e.target.id)
+                    triggerCustomerChoice();
                 } else {
                     filterList(e.target.value, e.target.id, filteredList)
                     refreshDisplay(filteredArray, filteredList)
                     filterChoices(e.target.value, e.target.id)
+                    triggerCustomerChoice();
                 }
                 e.stopPropagation();
             })
@@ -42,22 +45,22 @@ function triggerAdVSearch(){
 // trigger customer choice
 function triggerCustomerChoice(){
     const choicesList = document.querySelectorAll('.dropdown-item');
-    for(choice of choicesList){
-        choice.addEventListener('click', (e)=>{
-            console.log(choice)
-            // get parent name
-            const classSplit = e.target.parentNode.className.split(' ');
-            const parent = classSplit[0];
-            appendCustomerChoice(parent, e.target.text);
-            e.stopPropagation();
-        });
+    for(let i=0; i<choicesList.length; i++){
+        (function(index){
+            choicesList[i].addEventListener('click', (e)=>{
+                // get parent name
+                const classSplit = e.target.parentNode.parentNode.className.split(' ');
+                const parent = classSplit[0];
+                console.log(parent)
+                appendCustomerChoice(parent, e.target.text);
+            })
+        }(i));
     }
 }
 
 // hide dropdown if empty
 function hideDropdown(){
-    $('.dropdown').on('show.bs.dropdown', function(e) {
-        $('.dropdown:target').cle
+    $('.dropdown').change(function(e) {
         if($('.dropdown-item').length == 0){
             $('.dropdown-menu').addClass('d-none');
         }else{

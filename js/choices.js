@@ -19,7 +19,6 @@ function appendChoice(element, dataTag){
         datacol.insertAdjacentHTML('afterbegin', customOption)
     }
     n++;
-    triggerCustomerChoice();
 }
 
 // add tags with customer choice
