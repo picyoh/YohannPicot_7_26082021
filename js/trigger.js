@@ -60,7 +60,8 @@ function triggerCustomerChoice(){
 
 // hide dropdown if empty
 function hideDropdown(){
-    $('.dropdown').change(function(e) {
+    $('.dropdown').on('show.bs.dropdown',function(e) {
+        console.log($('.dropdown-item').length, e.target)
         if($('.dropdown-item').length == 0){
             $('.dropdown-menu').addClass('d-none');
         }else{
