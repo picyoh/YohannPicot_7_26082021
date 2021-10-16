@@ -36,7 +36,9 @@
             aria-label="Search">
             <label for="search"></label>
             <div class="input-group-append">
-              <span class="input-group-text border-0" id="basic-addon2"><i class="fas fa-search"></i></span>
+              <span class="input-group-text border-0" id="basic-addon2">
+                <i class="fas fa-search"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -52,31 +54,61 @@
       <div class="row d-flex justify-content-center">
         <div class="col col-11">
           <div class="btn-toolbar d-flex justify-content-start">
-            <div class="btn-group m-2">
-              <button type="button" class="ingredients btn btn-lg dropdown-toggle p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown m-2">
+              <button type="button" 
+                      class="ingredients btn btn-lg btn-default dropdown-toggle" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false">
+                <input id="ingredients" 
+                       class="ingredients advSearch border-0 btn p-0 text-left" 
+                       placeholder="Ingredients" 
+                       aria-label="filtre des ingredients avec menu déroulant">
                 <span class="sr-only">Toggle Dropdown</span>
-                <input id="ingredients" class="ingredients border-0 btn col-10 p-0 text-left" placeholder="Ingredients" aria-label="filtre des ingredients avec menu déroulant">
                 <div id="ingredientsData" class="ingredients dropdown-menu">
-                  
+                  <div class="col datacol">
+
+                  </div>
                 </div>
+                <span class="fas fa-angle-down"></span>
               </button>
             </div>
-            <div class="btn-group m-2">
-              <button type="button" class="appliances btn btn-lg btn-default dropdown-toggle p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown m-2">
+              <button type="button" 
+                      class="appliances advSearch btn btn-lg btn-default dropdown-toggle" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false">
+                <input id="appliances" 
+                       class="appliances border-0 btn p-0 text-left" 
+                       placeholder="Appareils" 
+                       aria-label="filtre des ingredients avec menu déroulant">
                 <span class="sr-only">Toggle Dropdown</span>
-                <input id="appliances" class="appliances border-0 btn col-10 p-0 text-left" placeholder="Appareils" aria-label="filtre des ingredients avec menu déroulant">
                 <div id="appliancesData" class="appliances dropdown-menu">
-                  
+                  <div class="col datacol">
+
+                  </div>
                 </div>
+                <span class="fas fa-angle-down"></span>
               </button>
             </div>
-            <div class="btn-group m-2">
-              <button type="button" class="ustensils btn btn-lg btn-default dropdown-toggle p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown m-2">
+              <button type="button" 
+                      class="ustensils advSearch btn btn-lg btn-default dropdown-toggle" 
+                      data-toggle="dropdown" 
+                      aria-haspopup="true" 
+                      aria-expanded="false">
+                <input id="ustensils" 
+                       class="ustensils border-0 btn p-0 text-left" 
+                       placeholder="Ustensiles" 
+                       aria-label="filtre des ingredients avec menu déroulant">
                 <span class="sr-only">Toggle Dropdown</span>
-                <input id="ustensils" class="ustensils border-0 btn col-10 p-0 text-left" placeholder="Ustensiles" aria-label="filtre des ingredients avec menu déroulant">
                 <div id="ustensilsData" class="ustensils dropdown-menu">
-                  
+                  <div class="col datacol">
+
+                  </div>
                 </div>
+                <span class="fas fa-angle-down"></span>
               </button>
             </div>
           </div>
@@ -98,9 +130,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- js -->
     <script src="data/recipes.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/searchEngine.js"></script>
     <script src="js/choices.js"></script>
     <script src="js/cards.js"></script>
+    <script src="js/searchEngine.js"></script>
+    <script src="js/reset.js"></script>
+    <script src="js/trigger.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

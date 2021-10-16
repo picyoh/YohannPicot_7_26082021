@@ -1,3 +1,7 @@
+.fontAwesome {
+  font-family: inherit, FontAwesome, sans-serif;
+}
+
 .ingredients {
   background-color: #3282f7;
   color: white;
@@ -42,4 +46,16 @@
 
 .fa-times-circle {
   cursor: pointer;
+}
+
+.dropdown-toggle::after {
+  border: none !important;
+}
+
+.dropdown .show {
+  display: flex;
+}
+.dropdown .show .dropdown-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }/*# sourceMappingURL=custom.css.map */

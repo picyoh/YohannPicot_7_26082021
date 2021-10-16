@@ -1,3 +1,7 @@
+.fontAwesome {
+    font-family: inherit, FontAwesome, sans-serif;
+  }
+
 .ingredients {
     background-color: #3282f7;
     color: white;
@@ -26,3 +30,15 @@
     cursor: pointer;
 }
 
+.dropdown-toggle::after{
+    border: none !important;
+}
+
+.dropdown .show {
+    display: flex;
+    
+    .dropdown-item{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
