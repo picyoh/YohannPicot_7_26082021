@@ -13,17 +13,11 @@ const ingredientsDataTag = document.querySelector('#ingredientsData');
 const appliancesDataTag = document.querySelector('#appliancesData');
 const ustensilsDataTag = document.querySelector('#ustensilsData');
 
-<<<<<<< HEAD
-const ingredientsDataArray= document.querySelector('#ingredients');
-const appliancesDataArray = document.querySelector('#appliances');
-const ustensilsDataArray = document.querySelector('#ustensils');
-=======
 // create filtered index array
 let filteredArray = [];
 
 // create new recipes list
 let filteredList = [];
->>>>>>> reg1
 
 // reset inputs on refresh & launch
 window.onload = function(){
@@ -44,7 +38,4 @@ function refreshDisplay(array, list){
     resetDatas();
     getResult(array, list);
 }
-
-
-
 

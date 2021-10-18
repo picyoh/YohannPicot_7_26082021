@@ -38,39 +38,33 @@ function filterList(input, parentId, list){
     const inputValue = normalizeEntry(input);
     // set regex wth input value
     const inputReg = new RegExp(`(^|\\s)${inputValue}`);
-    
-    for (let i=0; i< list.length; i++){
+
         // double loop
-        if (parentId === ("ingredients" || "ustensils")){
-            for (let j = 0; j < list[i][parentId].length; j++){
-                if(parentId === "ingredients"){
-                    // ingredients
-                    if (inputReg.test(normalizeEntry(list[i].ingredients[j].ingredient))){
-                        filteredArray.push(i)
-                    }
-                }else if(parentId === "ustensils"){
-                    // ustensils
-                    if (inputReg.test(normalizeEntry(list[i].ustensils[j]))){
-                        filteredArray.push(i)
-                    }
+        if(parentId === "ingredients"){
+            const filteredEntry = list.map((recipe, index) => recipe[parentId]
+                .map((ingList) => ingList.ingredient)
+                .filter((data) => {
+                if(inputReg.test(normalizeEntry(data))){
+                    return filteredArray.push(index)
                 }
-            }
-<<<<<<< HEAD
-            resetDataList();
-            resetCards();
-            getResults(filteredArray, CharsIndexArray);
-        }else if(inputValue < 3){
-            resetCards();
-            addCards(filteredArray);
-=======
+            }))
+        }else if(parentId === "ustensils"){
+            const filteredEntry = list.map((recipe, index) => recipe[parentId]
+            .map((ingList) => ingList)
+                .filter((data) => {
+                if(inputReg.test(normalizeEntry(data))){
+                    return filteredArray.push(index)
+                }
+            }))
         } else {
             // others
-            if (inputReg.test(normalizeEntry(list[i][parentId]))){
-                filteredArray.push(i)
-            }
->>>>>>> reg1
+            const filteredEntry = list.map(recipe => recipe[parentId])
+            .filter((data, index) => {
+                if(inputReg.test(normalizeEntry(data))){
+                    return filteredArray.push(index)
+                }
+            })
         }
-    }
     // console.log(filteredArray)
 }
 
@@ -84,40 +78,36 @@ function getResult(array, list){
     appliancesArray = [];
     ustensilsArray = [];
 
-    for(element of array){
-        const listIndex = list[element];
+    array.map(element => list[element])
+    .filter(data => {
         // cards
-        if(!filteredList.includes(listIndex)){
-            filteredList.push(listIndex);
+        if(!filteredList.includes(data)){
+            filteredList.push(data);
         }
-
-        // apliances
-        const applianceEl = listIndex.appliance;
-        if(!checkDuplicata(applianceEl, appliancesArray)){
-            appliancesArray.push(applianceEl);
-            appendChoice(applianceEl, appliancesDataTag);
-        }    
+        
+        // appliances
+        if(!checkDuplicata(data.appliance, appliancesArray)){
+            appliancesArray.push(data.appliance);
+            appendChoice(data.appliance, appliancesDataTag);
+        }
 
         // ingredients
-        const ingredientsLoopLength = listIndex.ingredients.length;
-        for (let j=0; j < ingredientsLoopLength; j++){
-            const ingredientEl = listIndex.ingredients[j].ingredient;
-            if(!checkDuplicata(ingredientEl, ingredientsArray)){
-                ingredientsArray.push(ingredientEl);
-                appendChoice(ingredientEl, ingredientsDataTag);
+        data.ingredients.map(element => {
+            if(!checkDuplicata(element.ingredient, ingredientsArray)){
+                ingredientsArray.push(element.ingredient);
+                appendChoice(element.ingredient, ingredientsDataTag);
             }
-        }
-
+        })
+        
         // ustensils
-        for (let j=0; j < listIndex.ustensils.length; j++){
-            // ustensils
-            const ustensilEl = listIndex.ustensils[j];
-            if(!checkDuplicata(ustensilEl, ustensilsArray)){
-                ustensilsArray.push(ustensilEl);
-                appendChoice(ustensilEl, ustensilsDataTag);
+        data.ustensils.map(element => {
+            if(!checkDuplicata(element, ustensilsArray)){
+                ustensilsArray.push(element);
+                appendChoice(element, ustensilsDataTag);
             }
-        }
-    }    
+        })
+    })
+  
     // console.log(filteredList);
     // console.log(ingredientsArray);
     // console.log(appliancesArray);
@@ -151,14 +141,14 @@ function filterChoices(input, parentId){
     // set regex wth input value
     const inputReg = new RegExp(`(^|\\s)${inputValue}`);
 
-    for(let i = targetArray.length -1; i >= 0; i--){
-        if (inputReg.test(normalizeEntry(targetArray[i]))){
-            appendChoice(targetArray[i], targetTag);
+    targetArray.forEach((element, i) => {
+        if (inputReg.test(normalizeEntry(element))){
+            appendChoice(element, targetTag);
             inputFocus();
         }else{
             targetArray.splice(i, 1)
         }
-    }
+    });
 }
 
 

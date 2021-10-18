@@ -1,6 +1,6 @@
 function resetDataList(){
     // reset dataList
-    for (element of dropdownMenu){
+    dropdownMenu.forEach(element => {
         while (element.firstChild){
             element.removeChild(element.firstChild);
         }
@@ -8,7 +8,8 @@ function resetDataList(){
         const firstCol = document.createElement('div');
         firstCol.className = 'col datacol';
         element.append(firstCol);
-    }
+
+    })
 }
 
 function resetDatas(){
@@ -27,7 +28,7 @@ function resetDatas(){
 
 // reset Inputs
 function resetInputs(){
-    for(input of inputs){
+    inputs.forEach(input => {
         input.value = '';
-    }
+    });
 }

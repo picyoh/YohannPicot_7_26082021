@@ -12,27 +12,14 @@ function addCards(list){
     } else if(list.length === 0){
         noMatches()
     } else {
-        for(i=0; i<list.length; i++){
-            indexes.push(list[i].id -1)
-        }
+        indexes = list.map(element => element.id -1)
     }
     
     // console.log(indexes);
     // add a card deck to sorting cards by 3
     let x = 0;
-    for(index of indexes){
 
-<<<<<<< HEAD
-        console.log(recipesArray[array[index][0][0]].name)
-        if(!namesArray.includes(recipesArray[array[index][0][0]].name)){
-            namesArray.push(recipesArray[array[index][0][0]].name);
-        }else{
-            index = index + 10;
-            namesArray.push(recipesArray[array[index][0][0]].name);
-        }
-        
-=======
->>>>>>> reg1
+    indexes = indexes.map(index => {
         if(x%3 == 0 && x!==0){
             const deckSup = `
             <div class="row">
@@ -52,21 +39,7 @@ function addCards(list){
             appendCards(index);
         }
         x++;
-<<<<<<< HEAD
-    }  
-    console.log(namesArray);
-}
-
-function randomIndexes(indexes, max){
-    while(indexes.length < 6){
-        let randomIndex = Math.floor(Math.random() * (max - 1));
-        if( randomIndex%2 !== 0 && (!indexes.includes(randomIndex))){
-            indexes.push(randomIndex);
-        }
-
-=======
->>>>>>> reg1
-    }
+    });
 }
 
 function appendCards(index){

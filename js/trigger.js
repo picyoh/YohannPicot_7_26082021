@@ -6,9 +6,7 @@ function triggerSearch(){
 
             const searchIds = ["name", "ingredients", "description"]
             
-            for (id of searchIds){
-                filterList(e.target.value, id, recipesList);
-            }
+            searchIds.forEach(id => filterList(e.target.value, id, recipesList))
             refreshDisplay(filteredArray, recipesList);
             triggerCustomerChoice();
         }else if(e.target.value.length === 0){
@@ -90,12 +88,13 @@ function changeArrow(){
 // close Tags
 function closeTags(){
     const closeBtns = document.querySelectorAll('.fa-times-circle');
-    for(closeBtn of closeBtns){
+    
+    closeBtns.forEach(closeBtn =>{
         closeBtn.addEventListener('click', (e)=>{
             e.target.parentNode.remove();
+            console.log(filteredArray, filteredList);
             refreshDisplay(filteredArray, filteredList);
             e.stopPropagation();
-            // input search + tags append search engine
         })
-    }
+    })
 }
