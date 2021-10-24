@@ -61,8 +61,8 @@ function filterList(input, parentId, list){
                 }
             }
         }else if(parentId === "ustensils"){
-            const filteredEntry = list.map((recipe, index) => recipe[parentId]
-            .map((ingList) => ingList)
+            const filteredEntry = list.forEach((recipe, index) => recipe[parentId]
+            .forEach((ingList) => ingList)
                 .filter((data) => {
                 if(inputReg.test(normalizeEntry(data))){
                     return filteredArray.push(index)
@@ -119,7 +119,8 @@ function appendAdv(list){
         }    
 
         // ingredients
-        data.ingredients.map(element => {
+        
+        listIndex.ingredients.forEach(element => {
             if(!checkDuplicata(element.ingredient, ingredientsArray)){
                 ingredientsArray.push(element.ingredient);
                 appendChoice(element.ingredient, ingredientsDataTag);
@@ -127,7 +128,7 @@ function appendAdv(list){
         })
         
         // ustensils
-        data.ustensils.map(element => {
+        listIndex.ustensils.forEach(element => {
             if(!checkDuplicata(element, ustensilsArray)){
                 ustensilsArray.push(element);
                 appendChoice(element, ustensilsDataTag);
