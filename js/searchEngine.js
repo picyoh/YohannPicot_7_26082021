@@ -34,20 +34,32 @@ function checkDuplicata(result, array){
 }
 
 function filterList(input, parentId, list){
+    // console.log(input, list)
+    const removeList = []
     // normalize input
     const inputValue = normalizeEntry(input);
     // set regex wth input value
     const inputReg = new RegExp(`(^|\\s)${inputValue}`);
 
+    const listLength  = list.length -1
+    for (let i=listLength; i >= 0; i--){
         // double loop
-        if(parentId === "ingredients"){
-            const filteredEntry = list.map((recipe, index) => recipe[parentId]
-                .map((ingList) => ingList.ingredient)
-                .filter((data) => {
-                if(inputReg.test(normalizeEntry(data))){
-                    return filteredArray.push(index)
+        let validIndex = false;
+        if (parentId === ("ingredients" || "ustensils")){
+            for (let j = 0; j < list[i][parentId].length; j++){
+                if(parentId === "ingredients"){
+                    const subList = list[i][parentId][j]
+                    // ingredients
+                    if (inputReg.test(normalizeEntry(subList.ingredient))){
+                        validateEntry(list[i])
+                    }
+                }else if(parentId === "ustensils"){
+                    // ustensils
+                    if (inputReg.test(normalizeEntry(subList))){
+                        validateEntry(list[i])
+                    }
                 }
-            }))
+            }
         }else if(parentId === "ustensils"){
             const filteredEntry = list.map((recipe, index) => recipe[parentId]
             .map((ingList) => ingList)
@@ -58,38 +70,53 @@ function filterList(input, parentId, list){
             }))
         } else {
             // others
-            const filteredEntry = list.map(recipe => recipe[parentId])
-            .filter((data, index) => {
-                if(inputReg.test(normalizeEntry(data))){
-                    return filteredArray.push(index)
+            if (inputReg.test(normalizeEntry(list[i][parentId]))){
+                validateEntry(list[i])
                 }
-            })
+            }
+        if(!validIndex && (parentId === 'ingredients' || parentId === 'appliances'|| parentId === 'ustensils')){
+            if(filteredList.indexOf(list[i]) >= 0){
+                // console.log(list[i]);
+                removeList.push(i)
+                
+            }
         }
-    // console.log(filteredArray)
+    }
+    removeFromList(removeList)
+    // console.log(filteredList)
 }
 
-function getResult(array, list){
+function validateEntry(recipe){
+    validIndex = true
+    // console.log(list[i])
+    if(filteredList.indexOf(recipe) === -1){
+        filteredList.push(recipe)
+    }
+}
+
+function removeFromList(list){
+    for(index of list){
+        filteredList.splice(index, 1)
+    }
+}
+
+function appendAdv(list){
     // reset choices col number
     n = 0;
-    // reset list
-    filteredList = [];
     // reset data Arrays
     ingredientsArray = [];
     appliancesArray = [];
     ustensilsArray = [];
 
-    array.map(element => list[element])
-    .filter(data => {
-        // cards
-        if(!filteredList.includes(data)){
-            filteredList.push(data);
-        }
-        
-        // appliances
-        if(!checkDuplicata(data.appliance, appliancesArray)){
-            appliancesArray.push(data.appliance);
-            appendChoice(data.appliance, appliancesDataTag);
-        }
+    for(element of list){
+        const listIndex = recipesList[element.id -1];
+
+        // apliances
+        const applianceEl = listIndex.appliance;
+        if(!checkDuplicata(applianceEl, appliancesArray)){
+            appliancesArray.push(applianceEl);
+            appendChoice(applianceEl, appliancesDataTag);
+        }    
 
         // ingredients
         data.ingredients.map(element => {
@@ -106,49 +133,7 @@ function getResult(array, list){
                 appendChoice(element, ustensilsDataTag);
             }
         })
-    })
-  
-    // console.log(filteredList);
-    // console.log(ingredientsArray);
-    // console.log(appliancesArray);
-    // console.log(ustensilsArray);
-    
-    // reset filtered indexes
-    addCards(filteredList);
-    filteredArray = [];
-}
-
-function filterChoices(input, parentId){
-    let targetArray;
-    let targetTag;
-
-    if (parentId === "ingredients"){
-        targetArray = ingredientsArray;
-        targetTag = ingredientsDataTag;
-    }else if(parentId === "appliances"){
-        targetArray = appliancesArray;
-        targetTag = appliancesDataTag;
-    }else if(parentId === "ustensils"){
-        targetArray = ustensilsArray;
-        targetTag = ustensilsDataTag;
-    }
-
-    resetDataList();
-    // reset col numbers
-    n = 0;
-    // normalize input
-    const inputValue = normalizeEntry(input);
-    // set regex wth input value
-    const inputReg = new RegExp(`(^|\\s)${inputValue}`);
-
-    targetArray.forEach((element, i) => {
-        if (inputReg.test(normalizeEntry(element))){
-            appendChoice(element, targetTag);
-            inputFocus();
-        }else{
-            targetArray.splice(i, 1)
-        }
-    });
+    }    
 }
 
 
