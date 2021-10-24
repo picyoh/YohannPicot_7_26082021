@@ -42,13 +42,14 @@ function filterList(input, parentId, list){
     const inputReg = new RegExp(`(^|\\s)${inputValue}`);
 
     const listLength  = list.length -1
-    for (let i=listLength; i >= 0; i--){
+    
+    list.forEach((listIndex, index) =>{
+        console.log(listIndex, index)
         // double loop
         let validIndex = false;
-        if (parentId === ("ingredients" || "ustensils")){
-            for (let j = 0; j < list[i][parentId].length; j++){
+        if (parentId === "ingredients" || parentId === "ustensils"){
+            listIndex[parentId].forEach(subList => {
                 if(parentId === "ingredients"){
-                    const subList = list[i][parentId][j]
                     // ingredients
                     if (inputReg.test(normalizeEntry(subList.ingredient))){
                         validateEntry(list[i])
@@ -56,24 +57,24 @@ function filterList(input, parentId, list){
                 }else if(parentId === "ustensils"){
                     // ustensils
                     if (inputReg.test(normalizeEntry(subList))){
-                        validateEntry(list[i])
+                        validateEntry(listIndex)
                     }
                 }
-            }
+            })
         } else {
             // others
-            if (inputReg.test(normalizeEntry(list[i][parentId]))){
-                validateEntry(list[i])
+            if (inputReg.test(normalizeEntry(listIndex[parentId]))){
+                validateEntry(listIndex)
                 }
             }
         if(!validIndex && (parentId === 'ingredients' || parentId === 'appliances'|| parentId === 'ustensils')){
-            if(filteredList.indexOf(list[i]) >= 0){
+            if(filteredList.indexOf(listIndex) >= 0){
                 // console.log(list[i]);
-                removeList.push(i)
+                removeList.push(index)
                 
             }
         }
-    }
+    })
     removeFromList(removeList)
     // console.log(filteredList)
 }
@@ -93,6 +94,7 @@ function removeFromList(list){
 }
 
 function appendAdv(list){
+    console.log(list)
     // reset choices col number
     n = 0;
     // reset data Arrays
