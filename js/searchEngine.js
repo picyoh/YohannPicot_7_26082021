@@ -51,34 +51,21 @@ function filterList(input, parentId, list){
                     const subList = list[i][parentId][j]
                     // ingredients
                     if (inputReg.test(normalizeEntry(subList.ingredient))){
-                        validIndex = true
-                        // console.log(list[i])
-                        if(filteredList.indexOf(list[i]) === -1){
-                            filteredList.push(list[i])
-                        }
+                        validateEntry(list[i])
                     }
                 }else if(parentId === "ustensils"){
                     // ustensils
                     if (inputReg.test(normalizeEntry(subList))){
-                        validIndex = true
-                        // console.log(list[i])
-                        if(filteredList.indexOf(list[i]) === -1){
-                            filteredList.push(list[i])
-                        }
+                        validateEntry(list[i])
                     }
                 }
             }
         } else {
             // others
             if (inputReg.test(normalizeEntry(list[i][parentId]))){
-                validIndex = true
-                // console.log(list[i])
-                if(filteredList.indexOf(list[i]) === -1){
-                    filteredList.push(list[i])
+                validateEntry(list[i])
                 }
             }
-            
-        }
         if(!validIndex && (parentId === 'ingredients' || parentId === 'appliances'|| parentId === 'ustensils')){
             if(filteredList.indexOf(list[i]) >= 0){
                 // console.log(list[i]);
@@ -89,6 +76,14 @@ function filterList(input, parentId, list){
     }
     removeFromList(removeList)
     // console.log(filteredList)
+}
+
+function validateEntry(recipe){
+    validIndex = true
+    // console.log(list[i])
+    if(filteredList.indexOf(recipe) === -1){
+        filteredList.push(recipe)
+    }
 }
 
 function removeFromList(list){
