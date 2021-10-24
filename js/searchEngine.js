@@ -34,53 +34,79 @@ function checkDuplicata(result, array){
 }
 
 function filterList(input, parentId, list){
+    // console.log(input, list)
+    const removeList = []
     // normalize input
     const inputValue = normalizeEntry(input);
     // set regex wth input value
     const inputReg = new RegExp(`(^|\\s)${inputValue}`);
-    
-    for (let i=0; i< list.length; i++){
+
+    const listLength  = list.length -1
+    for (let i=listLength; i >= 0; i--){
         // double loop
+        let validIndex = false;
         if (parentId === ("ingredients" || "ustensils")){
             for (let j = 0; j < list[i][parentId].length; j++){
                 if(parentId === "ingredients"){
+                    const subList = list[i][parentId][j]
                     // ingredients
-                    if (inputReg.test(normalizeEntry(list[i].ingredients[j].ingredient))){
-                        filteredArray.push(i)
+                    if (inputReg.test(normalizeEntry(subList.ingredient))){
+                        validIndex = true
+                        // console.log(list[i])
+                        if(filteredList.indexOf(list[i]) === -1){
+                            filteredList.push(list[i])
+                        }
                     }
                 }else if(parentId === "ustensils"){
                     // ustensils
-                    if (inputReg.test(normalizeEntry(list[i].ustensils[j]))){
-                        filteredArray.push(i)
+                    if (inputReg.test(normalizeEntry(subList))){
+                        validIndex = true
+                        // console.log(list[i])
+                        if(filteredList.indexOf(list[i]) === -1){
+                            filteredList.push(list[i])
+                        }
                     }
                 }
             }
         } else {
             // others
             if (inputReg.test(normalizeEntry(list[i][parentId]))){
-                filteredArray.push(i)
+                validIndex = true
+                // console.log(list[i])
+                if(filteredList.indexOf(list[i]) === -1){
+                    filteredList.push(list[i])
+                }
+            }
+            
+        }
+        if(!validIndex && (parentId === 'ingredients' || parentId === 'appliances'|| parentId === 'ustensils')){
+            if(filteredList.indexOf(list[i]) >= 0){
+                // console.log(list[i]);
+                removeList.push(i)
+                
             }
         }
     }
-    // console.log(filteredArray)
+    removeFromList(removeList)
+    // console.log(filteredList)
 }
 
-function getResult(array, list){
+function removeFromList(list){
+    for(index of list){
+        filteredList.splice(index, 1)
+    }
+}
+
+function appendAdv(list){
     // reset choices col number
     n = 0;
-    // reset list
-    filteredList = [];
     // reset data Arrays
     ingredientsArray = [];
     appliancesArray = [];
     ustensilsArray = [];
 
-    for(element of array){
-        const listIndex = list[element];
-        // cards
-        if(!filteredList.includes(listIndex)){
-            filteredList.push(listIndex);
-        }
+    for(element of list){
+        const listIndex = recipesList[element.id -1];
 
         // apliances
         const applianceEl = listIndex.appliance;
@@ -109,47 +135,6 @@ function getResult(array, list){
             }
         }
     }    
-    // console.log(filteredList);
-    // console.log(ingredientsArray);
-    // console.log(appliancesArray);
-    // console.log(ustensilsArray);
-    
-    // reset filtered indexes
-    addCards(filteredList);
-    filteredArray = [];
-}
-
-function filterChoices(input, parentId){
-    let targetArray;
-    let targetTag;
-
-    if (parentId === "ingredients"){
-        targetArray = ingredientsArray;
-        targetTag = ingredientsDataTag;
-    }else if(parentId === "appliances"){
-        targetArray = appliancesArray;
-        targetTag = appliancesDataTag;
-    }else if(parentId === "ustensils"){
-        targetArray = ustensilsArray;
-        targetTag = ustensilsDataTag;
-    }
-
-    resetDataList();
-    // reset col numbers
-    n = 0;
-    // normalize input
-    const inputValue = normalizeEntry(input);
-    // set regex wth input value
-    const inputReg = new RegExp(`(^|\\s)${inputValue}`);
-
-    for(let i = targetArray.length -1; i >= 0; i--){
-        if (inputReg.test(normalizeEntry(targetArray[i]))){
-            appendChoice(targetArray[i], targetTag);
-            inputFocus();
-        }else{
-            targetArray.splice(i, 1)
-        }
-    }
 }
 
 
