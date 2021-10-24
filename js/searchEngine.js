@@ -23,13 +23,13 @@ function checkDuplicata(result, array){
     if(array[0] === undefined){
         return false;
     }else{
-        for (element of array){
+        array.forEach(element => {
             const normEl = normalizeEntry(element);
             const tested = resultReg.test(normEl);
             if(tested === true){
                 return tested;   
             }
-        }
+        })
     }
 }
 
@@ -44,7 +44,7 @@ function filterList(input, parentId, list){
     const listLength  = list.length -1
     
     list.forEach((listIndex, index) =>{
-        console.log(listIndex, index)
+        // console.log(listIndex, index)
         // double loop
         let validIndex = false;
         if (parentId === "ingredients" || parentId === "ustensils"){
@@ -52,11 +52,13 @@ function filterList(input, parentId, list){
                 if(parentId === "ingredients"){
                     // ingredients
                     if (inputReg.test(normalizeEntry(subList.ingredient))){
-                        validateEntry(list[i])
+                        validIndex = true
+                        validateEntry(listIndex)
                     }
                 }else if(parentId === "ustensils"){
                     // ustensils
                     if (inputReg.test(normalizeEntry(subList))){
+                        validIndex = true
                         validateEntry(listIndex)
                     }
                 }
@@ -64,6 +66,7 @@ function filterList(input, parentId, list){
         } else {
             // others
             if (inputReg.test(normalizeEntry(listIndex[parentId]))){
+                validIndex = true
                 validateEntry(listIndex)
                 }
             }
@@ -80,7 +83,7 @@ function filterList(input, parentId, list){
 }
 
 function validateEntry(recipe){
-    validIndex = true
+
     // console.log(list[i])
     if(filteredList.indexOf(recipe) === -1){
         filteredList.push(recipe)
@@ -88,9 +91,7 @@ function validateEntry(recipe){
 }
 
 function removeFromList(list){
-    for(index of list){
-        filteredList.splice(index, 1)
-    }
+    list.forEach(index => filteredList.splice(index, 1))
 }
 
 function appendAdv(list){
@@ -102,7 +103,7 @@ function appendAdv(list){
     appliancesArray = [];
     ustensilsArray = [];
 
-    for(element of list){
+    list.forEach(element =>{
         const listIndex = recipesList[element.id -1];
 
         // apliances
@@ -113,25 +114,24 @@ function appendAdv(list){
         }    
 
         // ingredients
-        const ingredientsLoopLength = listIndex.ingredients.length;
-        for (let j=0; j < ingredientsLoopLength; j++){
-            const ingredientEl = listIndex.ingredients[j].ingredient;
+        listIndex.ingredients.forEach(subList =>{
+            const ingredientEl = subList.ingredient;
             if(!checkDuplicata(ingredientEl, ingredientsArray)){
                 ingredientsArray.push(ingredientEl);
                 appendChoice(ingredientEl, ingredientsDataTag);
             }
-        }
+        })
 
         // ustensils
-        for (let j=0; j < listIndex.ustensils.length; j++){
-            // ustensils
-            const ustensilEl = listIndex.ustensils[j];
+        listIndex.ustensils.forEach(subList => {
+            const ustensilEl = subList;
             if(!checkDuplicata(ustensilEl, ustensilsArray)){
                 ustensilsArray.push(ustensilEl);
                 appendChoice(ustensilEl, ustensilsDataTag);
             }
-        }
-    }    
+        })
+    })
+  
 }
 
 

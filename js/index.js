@@ -43,9 +43,9 @@ function basicSearch(inputValue){
     const searchIds = ["name", "ingredients", "description"]
     // reset list
     filteredList = []
-    for (parentId of searchIds){
+    searchIds.forEach(parentId => {
         filterList(inputValue, parentId, recipesList)
-    }
+    })
     refreshDisplay(recipesList)
     triggerCustomerChoice()
 }
@@ -69,9 +69,8 @@ function listInputs(){
     const tags = document.querySelectorAll('.tags')
     inputsList = []
     inputsList.push(searchBar.value)
-    for(element of tags){
+    tags.forEach(element => {
         inputsList.push(element.textContent)
-        
-    }
+    })
 }
 

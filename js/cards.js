@@ -12,16 +12,15 @@ function addCards(list){
     } else if(list.length === 0){
         noMatches()
     } else {
-        for(i=0; i<list.length; i++){
-            indexes.push(list[i].id -1)
-        }
+        list.forEach(element => {
+            indexes.push(element.id -1)
+        })
     }
     
     // console.log(indexes);
     // add a card deck to sorting cards by 3
     let x = 0;
-    for(index of indexes){
-
+    indexes.forEach(index => {
         if(x%3 == 0 && x!==0){
             const deckSup = `
             <div class="row">
@@ -41,7 +40,7 @@ function addCards(list){
             appendCards(index);
         }
         x++;
-    }
+    })
 }
 
 function appendCards(index){
