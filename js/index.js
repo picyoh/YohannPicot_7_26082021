@@ -50,8 +50,6 @@ function basicSearch(inputValue){
     triggerCustomerChoice()
 }
 
-<<<<<<< HEAD
-=======
 function customSearch(inputValue, parentId, list){
     filterList(inputValue, parentId, list)
     appendCustomerChoice(inputValue, parentId)
@@ -77,4 +75,3 @@ function listInputs(){
     }
 }
 
->>>>>>> boucle-for
