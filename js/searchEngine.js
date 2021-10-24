@@ -42,20 +42,23 @@ function filterList(input, parentId, list){
     const inputReg = new RegExp(`(^|\\s)${inputValue}`);
 
     const listLength  = list.length -1
+    
     for (let i=listLength; i >= 0; i--){
         // double loop
         let validIndex = false;
-        if (parentId === ("ingredients" || "ustensils")){
+        if (parentId === "ingredients" || parentId === "ustensils"){
             for (let j = 0; j < list[i][parentId].length; j++){
                 if(parentId === "ingredients"){
                     const subList = list[i][parentId][j]
                     // ingredients
                     if (inputReg.test(normalizeEntry(subList.ingredient))){
+                        validIndex = true
                         validateEntry(list[i])
                     }
                 }else if(parentId === "ustensils"){
                     // ustensils
                     if (inputReg.test(normalizeEntry(subList))){
+                        validIndex = true
                         validateEntry(list[i])
                     }
                 }
@@ -63,23 +66,23 @@ function filterList(input, parentId, list){
         } else {
             // others
             if (inputReg.test(normalizeEntry(list[i][parentId]))){
+                validIndex = true
                 validateEntry(list[i])
                 }
             }
         if(!validIndex && (parentId === 'ingredients' || parentId === 'appliances'|| parentId === 'ustensils')){
             if(filteredList.indexOf(list[i]) >= 0){
-                // console.log(list[i]);
+                console.log(list[i]);
                 removeList.push(i)
                 
             }
         }
     }
     removeFromList(removeList)
-    // console.log(filteredList)
+    console.log(filteredList)
 }
 
 function validateEntry(recipe){
-    validIndex = true
     // console.log(list[i])
     if(filteredList.indexOf(recipe) === -1){
         filteredList.push(recipe)
@@ -101,6 +104,7 @@ function appendAdv(list){
     ustensilsArray = [];
 
     for(element of list){
+        console.log(list)
         const listIndex = recipesList[element.id -1];
 
         // apliances
